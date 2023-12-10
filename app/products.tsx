@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import BackgroundImage from "../components/BackgroundImage";
 
 const products = [
   {
@@ -77,7 +76,6 @@ export default function Products() {
           </TouchableOpacity>
         ))}
       </ScrollView>
-      <BackgroundImage />
     </>
   );
 }

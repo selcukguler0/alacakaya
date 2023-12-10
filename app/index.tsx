@@ -10,7 +10,6 @@ import {
 
 import { router } from "expo-router";
 import Colors from "../constants/Colors";
-import BackgroundImage from "../components/BackgroundImage";
 
 const productsIcon = require("../assets/icons/products.png");
 const shopIcon = require("../assets/icons/shop.png");
@@ -48,7 +47,7 @@ const menu: MenuItems[] = [
   {
     title: "QUARRIES",
     icon: quarriesIcon,
-    href: "/products",
+    href: "/quarries",
   },
 ];
 
@@ -57,39 +56,44 @@ export default function Home() {
     router.push(href as `http${string}`);
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <View style={styles.line}></View>
-        <Image
-          style={styles.logo}
-          source={require("../assets/images/logoWhite.png")}
-        />
-        <View style={styles.line}></View>
-      </View>
+    <>
+      <View style={styles.container}>
+        <View style={styles.logoContainer}>
+          <View style={styles.line}></View>
+          <Image
+            style={styles.logo}
+            source={require("../assets/images/logoWhite.png")}
+          />
+          <View style={styles.line}></View>
+        </View>
 
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-        }}
-      >
-        <FlatList
-          data={menu}
-          numColumns={2}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.item} onPress={(()=>navigationHandler(item.href as string))}>
-              <Image style={styles.itemIcon} source={item.icon} />
-              <Text style={styles.itemText}>{item.title}</Text>
-            </TouchableOpacity>
-          )}
-          style={{ width: "100%" }}
-          keyExtractor={(item) => item.title}
-        />
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            marginHorizontal: 20,
+          }}
+        >
+          <FlatList
+            data={menu}
+            numColumns={2}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.item}
+                onPress={() => navigationHandler(item.href as string)}
+              >
+                <Image style={styles.itemIcon} source={item.icon} />
+                <Text style={styles.itemText}>{item.title}</Text>
+              </TouchableOpacity>
+            )}
+            style={{ width: "100%", marginHorizontal: 20 }}
+            keyExtractor={(item) => item.title}
+          />
+        </View>
       </View>
-      <BackgroundImage />
-    </View>
+    </>
   );
 }
 
@@ -135,6 +139,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 10,
     backgroundColor: "#fff7",
+    marginHorizontal: 20,
     marginBottom: 20, // Add margin between items vertically
   },
   itemText: {

@@ -1,7 +1,7 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack } from "expo-router";
+import { Link, SplashScreen, Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { Drawer } from "expo-router/drawer";
 import Colors from "../constants/Colors";
@@ -9,7 +9,17 @@ import Header from "../components/Header";
 import { DrawerHeaderProps } from "@react-navigation/drawer";
 import BackgroundImage from "../components/BackgroundImage";
 import NetInfo from "@react-native-community/netinfo";
-import { Text, View } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { AuthProvider, useAuth } from "../context/AuthContext";
+import Screens from "../constants/Screens";
+import { getData, removeData } from "../utils/data-storage";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -85,13 +95,15 @@ export default function RootLayout() {
   }
 
   return (
-    <>
+    <AuthProvider>
       <RootLayoutNav />
-    </>
+      <BackgroundImage />
+    </AuthProvider>
   );
 }
 
 function RootLayoutNav() {
+  const { user, signOut } = useAuth();
   return (
     <Drawer
       screenOptions={{
@@ -106,107 +118,121 @@ function RootLayoutNav() {
           shadowRadius: 2.62,
           elevation: 4,
         },
+        drawerActiveBackgroundColor: Colors.darkPrimaryColor,
+        sceneContainerStyle: {
+          backgroundColor: "transparent",
+        },
+        header: (props: DrawerHeaderProps) => <Header {...props} />,
       }}
       initialRouteName="/"
-    >
-      <Drawer.Screen
-        name="index"
-        options={{
-          headerStyle: {
-            backgroundColor: Colors.primaryColor,
-          },
-          ...DrawerOptions("HOME"),
-        }}
-      />
-      {screens.map((screen) => (
-        <Drawer.Screen
-          key={screen.title}
-          name={screen.path}
-          options={{
-            headerStyle: {
-              backgroundColor: Colors.primaryColor,
-            },
-            ...DrawerOptions(screen.title),
-          }}
-        />
-      ))}
-
-      {/* hide */}
-      {execuludedScreens.map((screen) => (
-        <Drawer.Screen
-          key={screen.path}
-          name={screen.path}
-          options={{
-            drawerItemStyle: {
-              display: "none",
-            },
-            headerStyle: {
-              backgroundColor: Colors.primaryColor,
-            },
-            ...DrawerOptions(screen.title),
-          }}
-        />
-      ))}
-    </Drawer>
+      drawerContent={(props) => {
+        return (
+          <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.wrapper}>
+              {Screens.map(
+                (screen) =>
+                  screen.show && (
+                    <TouchableOpacity
+                      key={screen.title}
+                      onPress={() => props.navigation.navigate(screen.path)}
+                      style={styles.item}
+                    >
+                      <FontAwesome
+                        name={screen.icon as any}
+                        size={20}
+                        color="white"
+                      />
+                      <Text style={styles.itemText}>{screen.title}</Text>
+                    </TouchableOpacity>
+                  )
+              )}
+              {user ? (
+                <View
+                  style={{
+                    marginHorizontal: 10,
+                    marginVertical: 50,
+                    alignItems: "center",
+                  }}
+                >
+                  <FontAwesome name="user" size={30} color="black" />
+                  <Text
+                    style={{
+                      fontSize: 15,
+                      fontWeight: "500",
+                      color: "#000",
+                      marginVertical: 5,
+                    }}
+                  >
+                    {user.email}
+                  </Text>
+                  <TouchableOpacity onPress={signOut} style={styles.item}>
+                    <FontAwesome name="sign-out" size={20} color="white" />
+                    <Text style={styles.itemText}>Sign Out</Text>
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <View style={styles.userContainer}>
+                  <TouchableOpacity
+                    onPress={() => props.navigation.navigate("user/signin")}
+                    style={styles.userWrapper}
+                  >
+                    <FontAwesome name="user" size={30} color="white" />
+                    <Text style={styles.itemText}>Sign In</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => props.navigation.navigate("user/signup")}
+                    style={styles.userWrapper}
+                  >
+                    <FontAwesome name="sign-in" size={30} color="white" />
+                    <Text style={styles.itemText}>Sign Up</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </ScrollView>
+          </SafeAreaView>
+        );
+      }}
+    ></Drawer>
   );
 }
 
-const DrawerOptions = (title: string) => {
-  const options: Record<string, any> = {
-    drawerLabel: title,
-    title,
-    drawerActiveBackgroundColor: Colors.primaryColor,
-    drawerInactiveBackgroundColor: "#b8b4b4",
-    drawerActiveTintColor: "white",
-    drawerInactiveTintColor: "white",
-    header: (props: DrawerHeaderProps) => <Header {...props} title={title} />,
-  };
-
-  return options;
-};
-
-const screens = [
-  {
-    title: "PRODUCTS",
-    path: "products",
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.primaryColor,
   },
-  {
-    title: "REFERENCES",
-    path: "references/index",
+  wrapper: {
+    marginVertical: 40,
   },
-  {
-    title: "CORPORATE",
-    path: "corporate/index",
+  item: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 3,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    gap: 30,
+    elevation: 4,
+    // padding: 5,
+    backgroundColor: Colors.primaryColor,
   },
-];
-
-const execuludedScreens = [
-  {
-    title: "ABOUT US",
-    path: "corporate/about-us",
+  itemText: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
   },
-  {
-    title: "HISTORY",
-    path: "corporate/history",
+  userContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    marginVertical: 50,
+    gap: 20,
   },
-  {
-    title: "QUALITY POLICY",
-    path: "corporate/quality-policy",
+  userWrapper: {
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    borderColor: "white",
+    borderWidth: 1,
+    padding: 10,
   },
-  {
-    title: "ENVIRONMENTAL POLICY",
-    path: "corporate/environmental-policy",
-  },
-  {
-    title: "DEALERS",
-    path: "corporate/dealers",
-  },
-  {
-    title: "REFERENCES - ABROAD",
-    path: "references/abroad",
-  },
-  {
-    title: "REFERENCES - DOMESTIC",
-    path: "references/domestic",
-  },
-];
+});

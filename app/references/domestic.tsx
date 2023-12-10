@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import React from "react";
 import Colors from "../../constants/Colors";
-import BackgroundImage from "../../components/BackgroundImage";
 import { router } from "expo-router";
 
 const references = [
@@ -83,7 +82,6 @@ export default function Domestic() {
           style={{ width: "100%", marginTop: 20 }}
           keyExtractor={(item) => item.title}
         />
-      <BackgroundImage />
     </View>
   );
 }
@@ -124,15 +122,6 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     objectFit: "contain",
-  },
-  backgroundImage: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    width: "100%",
-    height: "100%",
-    opacity: 0.5,
-    zIndex: -1,
   },
   backBtn: {
     backgroundColor: "#0005",

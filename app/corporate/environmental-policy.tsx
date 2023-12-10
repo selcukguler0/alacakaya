@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import React from "react";
 import { router } from "expo-router";
-import BackgroundImage from "../../components/BackgroundImage";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function AboutUs() {
@@ -91,8 +90,6 @@ export default function AboutUs() {
           </Text>
         </View>
       </View>
-
-      <BackgroundImage />
     </ScrollView>
   );
 }

@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import React from "react";
 import { router } from "expo-router";
-import BackgroundImage from "../../components/BackgroundImage";
 import { A } from "@expo/html-elements";
 
 export default function AboutUs() {
@@ -40,8 +39,6 @@ export default function AboutUs() {
           </A>
         </Text>
       </View>
-
-      <BackgroundImage />
     </View>
   );
 }

@@ -5,20 +5,27 @@ const backgroundImage = require("../assets/images/background.jpg");
 
 const BackgroundImage = () => {
   return (
-    <Image source={backgroundImage} style={styles.backgroundImage} />
+    <View style={styles.container}>
+      <Image source={backgroundImage} style={styles.backgroundImage} />
+    </View>
   );
 };
 
 export default BackgroundImage;
 
 const styles = StyleSheet.create({
-  backgroundImage: {
+  container: {
+    ...StyleSheet.absoluteFillObject,
     position: "absolute",
-    bottom: 0,
-    right: 0,
-    width: "100%",
-    height: "100%",
-    opacity: 0.5,
-    zIndex: -1,
+    flex: 1,
+    zIndex: -1, // Place the background image behind other components
+    opacity: 1
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
+    opacity: 0.6,
+    width: null,
+    height: null,
   },
 });

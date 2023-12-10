@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
-import BackgroundImage from "../../components/BackgroundImage";
 import { FontAwesome } from "@expo/vector-icons";
 import iconSet from "@expo/vector-icons/build/FontAwesome5";
 
@@ -117,7 +116,6 @@ export default function AboutUs() {
         />
       </View>
 
-      <BackgroundImage />
     </ScrollView>
   );
 }

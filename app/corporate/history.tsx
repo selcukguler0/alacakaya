@@ -10,10 +10,6 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
-import BackgroundImage from "../../components/BackgroundImage";
-import { FontAwesome } from "@expo/vector-icons";
-import { primaryColor } from "../../constants/Colors";
-import iconSet from "@expo/vector-icons/build/FontAwesome5";
 
 const paragraph = [
   `Uygarlığın beşiği olarak kabul edilen Anadolu’nun, Doğal Taş Sektöründeki güçlü markalarından biri olan Alacakaya Mermer A.Ş. sektöründe yarım yüzyıla yakın bir deneyime sahiptir.`,
@@ -44,8 +40,6 @@ export default function History() {
           </Text>
         ))}
       </View>
-
-      <BackgroundImage />
     </ScrollView>
   );
 }

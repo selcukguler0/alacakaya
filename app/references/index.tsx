@@ -10,8 +10,6 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Colors from "../../constants/Colors";
-import Lightbox from "react-native-lightbox-v2";
-import BackgroundImage from "../../components/BackgroundImage";
 import { router } from "expo-router";
 const references = {
   abroad: [
@@ -125,8 +123,6 @@ export default function References() {
           </ImageBackground>
         </TouchableOpacity>
       </View>
-
-      <BackgroundImage />
     </View>
   );
 }
@@ -184,14 +180,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#fff",
     backgroundColor: "rgba(0,0,0,0.5)",
-  },
-  backgroundImage: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    width: "100%",
-    height: "100%",
-    opacity: 0.5,
-    zIndex: -1,
   },
 });
