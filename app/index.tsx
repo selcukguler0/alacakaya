@@ -4,12 +4,11 @@ import {
   View,
   FlatList,
   StyleSheet,
-  TouchableOpacity,
   ImageSourcePropType,
+  Pressable,
 } from "react-native";
 
 import { router } from "expo-router";
-import Colors from "../constants/Colors";
 
 const productsIcon = require("../assets/icons/products.png");
 const shopIcon = require("../assets/icons/shop.png");
@@ -80,13 +79,16 @@ export default function Home() {
             data={menu}
             numColumns={2}
             renderItem={({ item }) => (
-              <TouchableOpacity
+              <Pressable
                 style={styles.item}
                 onPress={() => navigationHandler(item.href as string)}
+                
               >
-                <Image style={styles.itemIcon} source={item.icon} />
-                <Text style={styles.itemText}>{item.title}</Text>
-              </TouchableOpacity>
+                <>
+                  <Image style={styles.itemIcon} source={item.icon} />
+                  <Text style={styles.itemText}>{item.title}</Text>
+                </>
+              </Pressable>
             )}
             style={{ width: "100%", marginHorizontal: 20 }}
             keyExtractor={(item) => item.title}
@@ -138,14 +140,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: 5,
     borderRadius: 10,
-    backgroundColor: "#fff7",
+    borderColor: "#000",
+    borderWidth: 1,
+    padding: 10,
+    // backgroundColor: "#fff7",
     marginHorizontal: 20,
     marginBottom: 20, // Add margin between items vertically
+    underlayColor: "#fff",
+    activeOpacity: 0.5,
   },
   itemText: {
     fontSize: 20,
     fontWeight: "bold",
-    color: Colors.primaryColor,
+    color: "#000",
   },
   itemIcon: {
     width: 100,

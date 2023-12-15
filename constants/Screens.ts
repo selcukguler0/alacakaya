@@ -5,9 +5,10 @@ export default [
     icon: "home",
     show: true,
   },
+  //products
   {
     title: "PRODUCTS",
-    path: "products",
+    path: "products/index",
     icon: "cube",
     show: true,
   },

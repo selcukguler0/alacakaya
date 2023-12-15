@@ -1,9 +1,6 @@
 import {
-  Image,
   Text,
   View,
-  ScrollView,
-  FlatList,
   StyleSheet,
   TouchableOpacity,
   ImageBackground,

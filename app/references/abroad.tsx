@@ -14,34 +14,42 @@ const references = [
   {
     title: "Atana Hotel - BAE",
     image: require("../../assets/images/references/abroad/1.jpg"),
+    link: "atana-hotel",
   },
   {
     title: "Kâbe - Mekke, Suudi Arabistan",
     image: require("../../assets/images/references/abroad/2.jpg"),
+    link: "kabe-mekke",
   },
   {
     title: "Hotel Galleria - Jeddah",
     image: require("../../assets/images/references/abroad/3.jpg"),
+    link: "hotel-galleria",
   },
   {
     title: "Intourist Palace Hotel - Gürcistan",
     image: require("../../assets/images/references/abroad/4.jpg"),
+    link: "intourist-palace-hotel",
   },
   {
     title: "Royal Mediterranean Hotel - China",
     image: require("../../assets/images/references/abroad/5.jpg"),
+    link: "royal-mediterranean-hotel",
   },
   {
     title: "Atlantis Hotel Dubai - BAE",
     image: require("../../assets/images/references/abroad/6.jpg"),
+    link: "atlantis-hotel-dubai",
   },
   {
     title: "Pera Palace - İstanbul",
     image: require("../../assets/images/references/abroad/7.jpg"),
+    link: "pera-palace",
   },
   {
     title: "Cratos Hotel - Cyprus",
     image: require("../../assets/images/references/abroad/8.jpg"),
+    link: "cratos-hotel",
   },
 ];
 
@@ -61,7 +69,11 @@ export default function References() {
         data={references}
         numColumns={2}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity onPress={()=>router.replace({
+            pathname: "/references/reference/[name]" as `http${string}`,
+            params: {
+              name: item.link,
+             }})} style={styles.item}>
             <Image style={styles.itemImage} source={item.image} />
             <Text style={styles.itemText}>{item.title}</Text>
           </TouchableOpacity>

@@ -23,71 +23,72 @@ export default function AboutUs() {
       </TouchableOpacity>
       <View style={styles.wrapper}>
         <Text style={styles.subtitle}>
-          Ülkemizin yer altı kaynaklarını en uygun ve etkin şekilde
-          kullanılarak, ülke ekonomisine katkıda bulunmak, ürünlerimizin uluslar
-          arası pazarda en iyi şekilde tanıtmak.
+          To utilise the underground resources of our country in the most appropriate and effective way
+          to contribute to the country's economy, to use our products internationally
+          to promote in the best way in the international market.
         </Text>
         <Text style={styles.paragraph}>
-          Pazar payı ve rekabet gücünü arttırmak, mermer sektöründe lider
-          konumuna gelmek, kalite yönetim sistemi ve etkinliğinin sürekli
-          iyileştirilmesi ile çalışanlarımızın memnuniyetini en üst seviyeye
-          çıkartmak ve kaliteden ödün vermemek firmamızın ana politikasıdır.
+          To increase market share and competitiveness, to be a leader in the marble sector
+          position, quality management system and its effectiveness continuously
+          to maximise the satisfaction of our employees by improving
+          and not to compromise on quality is the main policy of our company.
         </Text>
-        <Text style={styles.subtitle}>Kalite Yönetim Sistemimiz</Text>
+        <Text style={styles.subtitle}>Our Quality Management System</Text>
         <Text style={styles.paragraph}>
-          <Text style={styles.bold}>ALACAKAYA MERMER A.Ş.</Text> vizyonu
-          doğrultusunda, güncel ve gelişen teknolojileri kullanarak, tüketici
-          beklentilerini karşılayan, Kalite Yönetim Sistemini uluslararası ISO
-          9001 standardının gereklerini yerine getirecek şekilde
-          belgelendirmiştirve sürekli iyileştirmektedir. Sürekli iyileştirme
-          yaklaşımı doğrultusunda verilere dayalı çalışmayı esas alan
-          <Text style={styles.bold}> ALACAKAYA MERMER A.Ş.</Text> tüm
-          süreçlerindeki verimliliği uluslararası düzeyde rekabet edebilecek
-          seviyeye yükselterek mükemmelliğe ulaşmak için hedeflerini
-          belirlemiştir.
-        </Text>
-        <Text style={styles.paragraph}>
-          Toplam Kalite yolculuğu, tüm sistemlerin verimliliğini artırmaktadır.
-          Bunun sonucu olarak, müşterilerdaha kaliteli ürün ve hizmetlere, daha
-          uygun koşullarda sahip olma olanağına kavuşmaktadır.
+          <Text style={styles.bold}>ALACAKAYA MERMER A.Ş.</Text> vision
+          In line with the current and developing technologies, the consumer
+          expectations, meets the expectations of the Quality Management System, international ISO
+          to fulfil the requirements of the 9001 standard
+          has been certified and is continuously improving. Continuous improvement
+          based on data-based work in line with the approach
+          <Text style={styles.bold}> ALACAKAYA MERMER A.Ş.</Text> all
+          efficiency in processes to be able to compete at international level
+          to achieve excellence by raising the level of excellence
+          has been determined.
         </Text>
         <Text style={styles.paragraph}>
-          Şirket içinde, kalite yolculuğunda atılan her adımda, birimler ve
-          kişiler arasında dil birliği gelişmiş, takım ruhu ve iletişim sürekli
-          olarak iyileşmiştir. Çalışanların şirket başarısına yaptıkları
-          katkının bilinci içinde olmaları, şirket kültürünü daha da
-          pekiştirmiştir.
+          The Total Quality journey increases the efficiency of all systems.
+          As a result, customers have access to better quality products and services, more
+          to have the opportunity to have favourable conditions.
         </Text>
         <Text style={styles.paragraph}>
-          <Text style={styles.bold}>ALACAKAYA MERMER A.Ş.</Text>' de Toplam
-          Kalite faaliyetleri, 2001li yılların başında Kalite Çemberleri
-          uygulamaları ile başlamıştır. 11 Mart 2002 yılından itibaren Kalite
-          Yönetim Sistemi Standardı 'na. NQA (National Quality Assurance
-          Sertifika No:14422) tarafından verilen ISO 9001:2008 Kalite Yönetim
-          Sistemi Belgesi ile geçilmiştir.
+          Within the company, at every step taken in the quality journey, units and
+          language unity has developed between people, team spirit and communication is continuous
+          as a result of the improvement in the company's performance. The contribution of employees to the success of the company
+          to be aware of their contribution to the company's culture, and to further enhance the company culture.
+          reinforced.
+        </Text>
+        <Text style={styles.paragraph}>
+          <Text style={styles.bold}>ALACAKAYA MERMER A.Ş.</Text>' in Total
+          Quality activities, Quality Circles at the beginning of 2001
+          applications. Since 11 March 2002, Quality
+          Management System Standard. NQA (National Quality Assurance
+          ISO 9001:2008 Quality Management Certificate No: 14422)
+          System Certificate has been passed.
         </Text>
         <Image
           style={styles.inlineImage}
           source={require("../../assets/images/corporate/5.jpg")}
         />
         <Text style={styles.altParagraph}>
-          Her yıl yapılan Yönetimin Gözden Geçirmesi Toplantıları ve Aylık
-          Personel Eğitim Programları ile gelişmelerin sürekliliği sağlanmaya
-          çalışılmıştır.
+          Annual Management Review Meetings and Monthly
+          Continuity of developments is ensured through Personnel Training Programmes
+          has been studied.
         </Text>
+
 
         <View style={styles.list}>
           <Text style={styles.listItem}>
-            <FontAwesome name="check" size={20} color="black" />
-            Değişen İç ve Dış Koşullar
+            <FontAwesome name="check" size={20} colour="black" />
+            Changing Internal and External Conditions
           </Text>
           <Text style={styles.listItem}>
-            <FontAwesome name="check" size={20} color="black" />
-            Uyum Sağlayıcı ve Önleyici Yaklaşımlar
+            <FontAwesome name="check" size={20} colour="black" />
+            Adaptive and Preventive Approaches
           </Text>
           <Text style={styles.listItem}>
-            <FontAwesome name="check" size={20} color="black" />
-            Modern Teknolojilerin Kullanım Kolaylıkları
+            <FontAwesome name="check" size={20} colour="black" />
+            Ease of Use of Modern Technologies
           </Text>
         </View>
       </View>

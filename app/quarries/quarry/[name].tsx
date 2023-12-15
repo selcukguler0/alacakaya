@@ -1,13 +1,9 @@
-import {
-  Image,
-  Text,
-  View,
-  ScrollView,
-  StyleSheet,
-} from "react-native";
+import { Image, Text, View, ScrollView, StyleSheet } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigation, useLocalSearchParams } from "expo-router";
-import Carousel from "react-native-snap-carousel";
+// import Carousel from "react-native-snap-carousel";
+import Carousel from "react-native-reanimated-carousel";
+import { Dimensions } from "react-native";
 
 const quarries = [
   {
@@ -16,7 +12,7 @@ const quarries = [
     bold: "Our quarry, located in the vicinity of Özdemir village in the central district of Karaman province, was put into production in 2011.",
     paragraphs: [
       "Our quarry is 35 km from Karaman city centre and 290 km from Mersin Port. The possible and probable reserves for our marble fields in this region are calculated to be around 22.000.000 m3. It has an annual average production capacity of 20.000 m3 . In line with supply and demand, the production capacity can be increased to 40.000 m3 if necessary.",
-      "Açık renkli bej ocağımız, kendine has renk ve göz alıcı doğal deseni bakımından homojen olma özelliğiyle dikkat çekmektedir. Dokusu ve iyi cila tutma özelliğiyle de çeşitli projelerde aranan bir üründür. Üretilen blokların bir kısmı işlenmek üzere fabrikamızda değerlendirilmekte, bir kısmı da dış ülkelere ihraç edilmek üzere Mersin ve İzmir limanlarına gönderilmektedir.",
+      "Our light-colored beige hearth attracts attention with its homogeneous feature in terms of its unique color and eye-catching natural pattern. It is a product sought after in various projects with its texture and good polish retention feature. Some of the blocks produced are evaluated in our factory for processing, and some are exported to foreign countries. It is sent to Mersin and Izmir ports.",
     ],
     images: [
       require("../../../assets/images/quarries/karaman/1.jpg"),
@@ -39,7 +35,7 @@ const quarries = [
     bold: "It is located in the vicinity of Altıoluk Village, Alacakaya district, Elazığ province, 80 kilometres from Elazığ province and 700 km from Mersin Port.",
     paragraphs: [
       "It is the only quarry operating since the establishment of the company. Since 1984, Elazig Vişne (Rosso Levanto) marble production has been continuing. The annual block production capacity is around 10.000 m3 .  Rubble production is also carried out at the site. Average rubble production is around 10.000 m3 per year. The possible and potential reserves are thought to be around 600.000 m3 . Therefore, it is spread over a wide area.",
-      "With its indisputable beauty and unique colour, it has entered the world literature and established itself. Our marble, whose reserves are found only in our quarry, is preferred in important places and various areas with its durable structure as well as its aesthetic appearance. It is thought that the world-famous Elâzığ Cherry (Rosso Levanto) should gain an identity as a semi-precious natural stone. While some of the blocks produced are utilised in our factory for processing, some of them are exported to the foreign market as raw material."
+      "With its indisputable beauty and unique colour, it has entered the world literature and established itself. Our marble, whose reserves are found only in our quarry, is preferred in important places and various areas with its durable structure as well as its aesthetic appearance. It is thought that the world-famous Elâzığ Cherry (Rosso Levanto) should gain an identity as a semi-precious natural stone. While some of the blocks produced are utilised in our factory for processing, some of them are exported to the foreign market as raw material.",
     ],
     images: [
       require("../../../assets/images/quarries/elazig/1.jpg"),
@@ -57,7 +53,7 @@ const quarries = [
     bold: "Our quarry located in Çüngüş district of Diyarbakır province was put into production in 2000.",
     paragraphs: [
       'Our "Black Pearl" quarry located in Çüngüş district of Diyarbakır province is 185 km from our factory and 660 km from Mersin Port. Since 2000, marble production known as "Black Pearl" has been continuing in the quarry. The apparent reserve of our quarry is calculated as approximately 500,000 m3 . Possible and probable reserves are thought to be around 2.000.000 m3. It is spread over a wide area. Annual production is around 3000 m3 on average.',
-      "It is among the most sought-after marbles with its natural structure and noble colour. In addition to these features, it polishes very well. Some of the blocks produced are utilised in our factory for processing and some of them are exported to the world through Mersin Port."
+      "It is among the most sought-after marbles with its natural structure and noble colour. In addition to these features, it polishes very well. Some of the blocks produced are utilised in our factory for processing and some of them are exported to the world through Mersin Port.",
     ],
     images: [
       require("../../../assets/images/quarries/black-pearl/1.jpg"),
@@ -75,7 +71,7 @@ const quarries = [
     bold: "Our quarry located in the vicinity of Altıoluk village, Alacakaya district, Elazığ province was put into production in 1995.",
     paragraphs: [
       'Our quarry is located in Altıoluk village, Alacakaya district, Elazig province, 80 km from Elazig province and 700 km from Mersin Port. In our quarry, natural stone known as "Petrol Green" has been produced since 1995. The visible reserve is approximately 100.000 m3 . Possible and potential reserves are estimated to be around 400,000 m3 . An average production of 5.000 m3 is realised.',
-      'It offers a perfect appearance with its texture and pattern structure. It has a wide usage area thanks to its unique colour tone and properties. Some of the blocks produced are evaluated in our factory for processing, while the other part is sent to our export department to present to the world.'
+      "It offers a perfect appearance with its texture and pattern structure. It has a wide usage area thanks to its unique colour tone and properties. Some of the blocks produced are evaluated in our factory for processing, while the other part is sent to our export department to present to the world.",
     ],
     images: [
       require("../../../assets/images/quarries/petrol-green/1.jpg"),
@@ -91,8 +87,8 @@ const quarries = [
     link: "kutahya-quarry",
     bold: "Our Kütahya Marble Quarry, located in Pınarcık village of Altıntaş district, Kütahya province, was opened for production in 2021.",
     paragraphs: [
-      'Kütahya Marble Quarry is located in Pınarcık village of Altıntaş district of Kütahya province, 15 km to Altıntaş district, 75 km to Afyonkarahisar and 400 km to İzmir Port. Since 2021, when it was included in the production programme, marble production has been continuing in our quarry. The possible and probable reserves of our quarry are thought to be around 9,000,000 m3. The operable reserve is around 900,000 m3.',
-      'In our quarry, marbles known as Aliento, Ciello and Bella Stones are produced. Each of these marbles has very good polish holding properties. In addition, they are special stones that have no precedent with their pattern structure and texture. Bella Stones, also known as Afyon Sugar, attracts attention with its natural pattern resembling the sky. Like all our other stones, these stones stand out with their resistance to harsh conditions, their aesthetic and elegant appearance that appeals to different tastes, as well as their hygienic structure that prevents the formation of bacteria. Some of the marble blocks produced in our quarry are processed in our factory to be used in various fields and the other part is exported to the world from Izmir Port.'
+      "Kütahya Marble Quarry is located in Pınarcık village of Altıntaş district of Kütahya province, 15 km to Altıntaş district, 75 km to Afyonkarahisar and 400 km to İzmir Port. Since 2021, when it was included in the production programme, marble production has been continuing in our quarry. The possible and probable reserves of our quarry are thought to be around 9,000,000 m3. The operable reserve is around 900,000 m3.",
+      "In our quarry, marbles known as Aliento, Ciello and Bella Stones are produced. Each of these marbles has very good polish holding properties. In addition, they are special stones that have no precedent with their pattern structure and texture. Bella Stones, also known as Afyon Sugar, attracts attention with its natural pattern resembling the sky. Like all our other stones, these stones stand out with their resistance to harsh conditions, their aesthetic and elegant appearance that appeals to different tastes, as well as their hygienic structure that prevents the formation of bacteria. Some of the marble blocks produced in our quarry are processed in our factory to be used in various fields and the other part is exported to the world from Izmir Port.",
     ],
     images: [
       require("../../../assets/images/quarries/kutahya/1.jpg"),
@@ -113,11 +109,6 @@ export default function Quarry() {
     undefined
   );
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerTitle: quarry?.title || "Quarry",
-    });
-  }, [quarry]);
   useEffect(() => {
     if (local.name) {
       const quarry = quarries.find((quarry) => quarry.link === local.name);
@@ -176,18 +167,49 @@ const MyCarousel = ({ entries }: any) => {
       />
     </View>
   );
+  const windowWidth = Dimensions.get("window").width;
+
+  const baseOptions = {
+    vertical: false,
+    width: windowWidth,
+    height: 500 * 0.6,
+  } as const;
 
   return (
+    // <Carousel
+    //   ref={carouselRef}
+    //   data={entries}
+    //   layout={"default"}
+    //   renderItem={renderItem}
+    //   sliderWidth={500}
+    //   itemWidth={300}
+    //   autoplay={true}
+    //   autoplayDelay={4000}
+    //   loop={true}
+    // />
     <Carousel
-      ref={carouselRef}
+      {...baseOptions}
+      style={{
+        width: windowWidth,
+        alignItems: "center",
+        justifyContent: "center",
+        marginLeft: 20,
+      }}
+      loop
+      pagingEnabled={true}
+      snapEnabled={true}
+      autoPlay={true}
+      autoPlayInterval={1500}
+      // onProgressChange={(_, absoluteProgress) =>
+      //   (progressValue.value = absoluteProgress)
+      // }
+      modeConfig={{
+        snapDirection: "left",
+        stackInterval: 18,
+      }}
+      mode="horizontal-stack"
       data={entries}
-      layout={"default"}
-      renderItem={renderItem}
-      sliderWidth={500}
-      itemWidth={300}
-      autoplay={true}
-      autoplayDelay={4000}
-      loop={true}
+      renderItem={({ index }) => renderItem({ item: entries[index], index })}
     />
   );
 };

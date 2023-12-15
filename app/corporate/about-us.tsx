@@ -6,7 +6,6 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
-  ImageBackground,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
@@ -14,12 +13,12 @@ import { FontAwesome } from "@expo/vector-icons";
 import iconSet from "@expo/vector-icons/build/FontAwesome5";
 
 const paragraph = [
-  `1984 yılında fabrika işletmeciliğine başlayan Alacakaya Mermer sürekli yenileyerek günümüzde çağın tüm gereksinmelerini karşılayacak teknik ekip ve donanıma sahip bir tesise kavuşmuştur.`,
-  `Elazığ Vişne (Rosso Levanto) ile yakalanan başarıdan sonra Botticino Royal başta olmak üzere tüm taşların dünyada markalaşması konusunda önemli adımlar atılmıştır. Yıllık 970.000 metrekare olan fabrika üretiminin % 75’i dış pazarda, % 25’lik bölümü ise iç pazarda değerlendirilmektedir.`,
-  `Alacakaya Mermer A.Ş. ihracatının büyük kısmını Uzak doğu ve orta doğu başta olmak üzere; Asya, Avrupa, Güney Amerika, Kuzey Amerika, Afrika, Avustralya kıtalarınada yapmaktadır.`,
-  `Alacakaya Mermer A.Ş. standart ölçülerde üretim yapmanın yanı sıra müşteri talepleri doğrultusunda proje bazlı özel üretim yapabilmektedir.`,
-  `Ayrıca eskitme, fırçalama ve çekiçleme, asitle çökertme, deri yüzey, yakma gibi özel yöntemler uygulanarak mermere daha da fazla değer kazandırılmaktadır.`,
-  `Alacakaya Mermer A.Ş. mermerin milyonlarca yıllık serüvenine duyduğumuz hayranlıkla, estetik ve değer kazandıran uygulamalar sahip olduğumuz kaynakları dünyaya tanıtmanın haklı gururunu yaşamaktadır.. Aynı ruhla daha uzun yıllar sektöre hizmet verme isteği ve inancındayız.`,
+  `Alacakaya Marble, which started factory management in 1984, has constantly renovated and now has a facility with a technical team and equipment that will meet all the requirements of the age.`,
+  `After the success achieved with Elazığ Cherry (Rosso Levanto), important steps have been taken to brand all stones in the world, especially Botticino Royal. 75% of the annual factory production of 970,000 square meters is used in the foreign market and 25% in the domestic market.`,
+  `Alacakaya Mermer A.Ş. Most of its exports are to the Far East and the Middle East; It also serves the continents of Asia, Europe, South America, North America, Africa and Australia.`,
+  `Alacakaya Mermer A.Ş. In addition to producing in standard sizes, it can also make project-based special production in line with customer demands.`,
+  `In addition, even more value is added to the marble by applying special methods such as tumbled, brushing and hammering, acid precipitation, leather surface and burning.`,
+  `Alacakaya Mermer A.Ş. With our admiration for the millions of years of adventure of marble, we are proud to introduce the resources we have to the world with aesthetic and value-adding applications. We have the desire and belief to serve the sector for many years with the same spirit.`,
 ];
 
 const data = [
@@ -58,8 +57,8 @@ export default function AboutUs() {
       </TouchableOpacity>
       <View style={styles.wrapper}>
         <Text style={styles.subtitle}>
-          Alacakaya Mermer, 5 Ocağı ve 500 çalışanıyla müşterilerine üstün
-          teknoloji, yüksek hassasiyet ve marka kalitesi ile hizmet vermektedir.
+          Alacakaya Marble, with its 5 quarries and 500 employees, is superior
+          to its customers. technology, high precision and brand quality.
         </Text>
         {paragraph.map((p, i) => (
           <Text key={i} style={styles.paragraph}>
@@ -73,31 +72,30 @@ export default function AboutUs() {
         />
 
         <Text style={styles.altParagraph}>
-          Alacakaya Mermer A.Ş. mermerin milyonlarca yıllık serüvenine
-          duyduğumuz hayranlıkla, estetik ve değer kazandıran uygulamalar sahip
-          olduğumuz kaynakları dünyaya tanıtmanın haklı gururunu yaşamaktadır..
-          Aynı ruhla daha uzun yıllar sektöre hizmet verme isteği ve
-          inancındayız.
+          Alacakaya Marble Inc. is a company that focuses on the millions of
+          years adventure of marble. with the admiration we feel, having
+          aesthetic and value-adding applications We are proud of introducing
+          our resources to the world. With the same spirit and the desire to
+          serve the sector for many more years we believe.
         </Text>
 
         <View style={styles.list}>
           <Text style={styles.listItem}>
             <FontAwesome name="check" size={20} color="black" />
-            Yeniliklere Açık ve Paylaşımcı Yönetim Anlayışı
+            Innovative and Sharing Management Approach
           </Text>
           <Text style={styles.listItem}>
             <FontAwesome name="check" size={20} color="black" />
-            Koşulsuz Müşteri Memnuniyeti
+            Unconditional Customer Satisfaction
           </Text>
           <Text style={styles.listItem}>
             <FontAwesome name="check" size={20} color="black" />
-            Son Teknolojiye Sahip Makina Parkları
+            Machine Parks with the Latest Technology
           </Text>
         </View>
       </View>
       <View>
         <FlatList
-          nestedScrollEnabled
           data={data}
           numColumns={2}
           renderItem={({ item }) => (
@@ -115,7 +113,6 @@ export default function AboutUs() {
           keyExtractor={(item) => item.title}
         />
       </View>
-
     </ScrollView>
   );
 }

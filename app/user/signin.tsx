@@ -80,6 +80,7 @@ export default function SignIn() {
         />
         <TextInput
           style={styles.input}
+          secureTextEntry={true}
           placeholder="Password"
           onChangeText={(text) => setForm({ ...form, password: text })}
           value={form.password}

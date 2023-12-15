@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   Text,
+  ScrollView,
 } from "react-native";
 import { useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
@@ -20,11 +21,16 @@ export default function SignUp() {
     email: "",
     password: "",
     passwordConfirm: "",
+    name_surname: "",
+    phone: "",
+    country: "",
+    city: "",
+    companyName: "",
   });
 
   const signUpHandler = async () => {
     console.log(form);
-    if (!form.email || !form.password || !form.passwordConfirm) {
+    if (!form.email || !form.password || !form.passwordConfirm || !form.name_surname || !form.phone || !form.country || !form.city || !form.companyName) {
       showToast("error", "Please fill in all fields!");
       return;
     }
@@ -48,25 +54,36 @@ export default function SignUp() {
     formdata.append("email", form.email);
     formdata.append("password", form.password);
     formdata.append("passwordConfirm", form.passwordConfirm);
+    formdata.append("name_surname", form.name_surname);
+    formdata.append("phone", form.phone);
+    formdata.append("country", form.country);
+    formdata.append("city", form.city);
+    formdata.append("companyName", form.companyName);
 
     let config = {
-      method: 'post',
+      method: "post",
       maxBodyLength: Infinity,
       url: `http://mobil.alacakaya.com/signup`,
-      headers: { 
-        'Content-Type': 'multipart/form-data'
+      headers: {
+        "Content-Type": "multipart/form-data",
       },
-      data : formdata
+      data: formdata,
     };
 
     const req = await axios.request(config);
     console.log("dataa", req.data);
     if (req.data.success) {
-      showToast("success", "Sign up successful! Redirecting...");
-      setForm({ email: "", password: "", passwordConfirm: "" });
-      setTimeout(() => {
-        router.push("/user/signin");
-      }, 2000);
+      showToast("success", req.data.success, 5000);
+      setForm({
+        email: "",
+        password: "",
+        passwordConfirm: "",
+        name_surname: "",
+        phone: "",
+        country: "",
+        city: "",
+        companyName: "",
+      });
     } else {
       showToast("error", req.data.error);
     }
@@ -76,8 +93,45 @@ export default function SignUp() {
     <>
       <Toast config={toastConfig} />
 
-      <View style={styles.container}>
+      <ScrollView
+        contentContainerStyle={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        style={styles.container}
+      >
         <FontAwesome name="user" size={64} color="black" />
+        <TextInput
+          style={styles.input}
+          placeholder="Name Surname"
+          onChangeText={(text) => setForm({ ...form, name_surname: text })}
+          value={form.name_surname}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Phone"
+          onChangeText={(text) => setForm({ ...form, phone: text })}
+          value={form.phone}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Country"
+          onChangeText={(text) => setForm({ ...form, country: text })}
+          value={form.country}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="City"
+          onChangeText={(text) => setForm({ ...form, city: text })}
+          value={form.city}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Company Name"
+          onChangeText={(text) => setForm({ ...form, companyName: text })}
+          value={form.companyName}
+        />
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -87,12 +141,14 @@ export default function SignUp() {
         <TextInput
           style={styles.input}
           placeholder="Password"
+          secureTextEntry={true}
           onChangeText={(text) => setForm({ ...form, password: text })}
           value={form.password}
         />
         <TextInput
           style={styles.input}
           placeholder="Password Confirm"
+          secureTextEntry={true}
           onChangeText={(text) => setForm({ ...form, passwordConfirm: text })}
           value={form.passwordConfirm}
         />
@@ -100,7 +156,7 @@ export default function SignUp() {
           <FontAwesome name="sign-in" size={24} color="black" />
           <Text style={{ fontSize: 16 }}>Sign Up</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     </>
   );
 }
@@ -108,8 +164,6 @@ export default function SignUp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
   input: {
     height: 40,

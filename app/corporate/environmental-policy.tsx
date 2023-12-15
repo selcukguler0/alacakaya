@@ -23,33 +23,35 @@ export default function AboutUs() {
       </TouchableOpacity>
       <View style={styles.wrapper}>
         <Text style={styles.subtitle}>
-          Alacakaya Mermer ve Maden A.Ş., kurulduğu günden itibaren çevreye
-          duyarlı bir şekilde, çevre ile barışık çalışmayı ilke edinmiştir.
+          Alacakaya Marble and Mining Inc. has been committed to the environment
+          since the day it was founded. has adopted the principle of working in
+          a sensitive manner, in harmony with the environment.
         </Text>
         <Text style={styles.paragraph}>
-          Doğa bilincinin getirdiği hareketle, kendi bünyesinde bulunan çevre
-          mühendisleri ile birlikte çevre danışmalık hizmetleri almaktadır.
+          With the movement brought about by nature consciousness, the
+          environment within its own environmental consultancy services together
+          with engineers.
         </Text>
         <Text style={styles.paragraph}>
-          Bu danışmanlık hizmeti altında, çevresel ve çevre ile ilgili
-          çalışmalar izlenmekte, raporlanmakta ve rapor kayıtları düzenli olarak
-          arşivlenmektedir. Bununla birlikte, belli bir program çerçevesinde
-          koordineli olarak “Çevre ve Şehircilik İl Müdürlükleri” ile
-          çalışılmaktadır.
+          Under this consultancy service, environmental and
+          environmental-related The studies are monitored, reported and the
+          report records are kept regularly. archived. However, within the
+          framework of a specific programme in coordination with "Provincial
+          Directorates of Environment and Urbanisation" is being studied.
         </Text>
         <Text style={styles.paragraph}>
-          Yapılan tüm bu çalışmalara bağlı olarak çevresel etki düzenlemeleri
-          sistemli olarak raporlanmakta ve bunun sonucunda da alınması gereken
-          önlemler mevzuat çerçevesinde yerine getirilmektedir. Çevre ile
-          barışık ve uyumlu bir çalışma düzeni için yılda en az iki defa tüm
-          çalışmalar rapor edilerek gerekli önlemlerin alınması hassasiyetle
-          sağlanmaktadır.
+          Depending on all these studies, environmental impact regulations
+          systematically reported and as a result, the necessary measures are
+          taken Measures are fulfilled within the framework of the legislation.
+          Environment and for a peaceful and harmonious working order at least
+          twice a year for all studies are reported and necessary precautions
+          are taken sensitively is provided.
         </Text>
         <Text style={styles.paragraph}>
-          Alacakaya Mermer A.Ş., çevreye duyarlı ve sorumlu madencilik bilinci
-          ile hareket ederek üretim yapmaya devam etmektedir. Türkiye'nin önde
-          gelen mermer üreticilerinden biri olarak yeşil doğa ilkesine bağlı
-          halde çalışmalarını sürdürmektedir.
+          Alacakaya Marble A.Ş., environmentally sensitive and responsible
+          mining consciousness continues to make production by acting with.
+          Turkey's leading As one of the leading marble producers, we are
+          committed to the principle of green nature. continues to work.
         </Text>
 
         <Image
@@ -57,36 +59,36 @@ export default function AboutUs() {
           source={require("../../assets/images/corporate/7.jpg")}
         />
         <Text style={styles.altParagraph}>
-          Alacakaya Mermer A.Ş. doğayı koruyan çevre yönetimi konusunda bilinçli
-          ve çevreye en az etki edilmesini sağlayan faaliyetleri ile Avrupa
-          Birliği ilkelerini gerçekleştirip ve bu ilkeler dahilinde çevreye
-          duyarlı olmayı hedeflemektedir.
+          Alacakaya Marble Inc. is conscious about environmental management that
+          protects nature and minimising the impact on the environment and
+          European to realise the principles of the Union and to protect the
+          environment within these principles aims to be sensitive.
         </Text>
-        <Text style={styles.altParagraph}>Çalışmalarını yürütürken;</Text>
+        <Text style={styles.altParagraph}>In carrying out their work;</Text>
 
         <View style={styles.list}>
           <Text style={styles.listItem}>
             <FontAwesome name="check" size={20} color="black" />
-            Çevreye duyarlı ve saygılı olmayı,
+            To be sensitive and respectful to the environment,
           </Text>
           <Text style={styles.listItem}>
             <FontAwesome name="check" size={20} color="black" />
-            Çevre yönetim sistemi ve etkilerini geliştirmeyi,
+            To improve the environmental management system and its effects,
           </Text>
           <Text style={styles.listItem}>
             <FontAwesome name="check" size={20} color="black" />
-            Çalışanların çevre yönetim konusunda bilinçli çalışmasını ve duyarlı
-            davranmasını,
+            Ensuring that employees work consciously and sensitively on
+            environmental management behaviour,
           </Text>
           <Text style={styles.listItem}>
             <FontAwesome name="check" size={20} color="black" />
-            Madencilik faaliyetleri sırası ve sonrasında en az çevreye etki
-            edilmesini sağlanmasını,
+            Minimal environmental impact during and after mining activities to
+            ensure that
           </Text>
           <Text style={styles.listItem}>
             <FontAwesome name="check" size={20} color="black" />
-            Avrupa Birliği ilkelerine göre çevreye duyarlı olmayı, ilke edinerek
-            faaliyetlerini yürütmektedir.
+            By adopting the principle of being sensitive to the environment
+            according to the principles of the European Union activities.
           </Text>
         </View>
       </View>

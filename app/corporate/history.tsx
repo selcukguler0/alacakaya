@@ -3,7 +3,6 @@ import {
   Text,
   View,
   ScrollView,
-  FlatList,
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
@@ -12,14 +11,14 @@ import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
 
 const paragraph = [
-  `Uygarlığın beşiği olarak kabul edilen Anadolu’nun, Doğal Taş Sektöründeki güçlü markalarından biri olan Alacakaya Mermer A.Ş. sektöründe yarım yüzyıla yakın bir deneyime sahiptir.`,
-  `1967 yılında, sonradan Rosso Levanto olarak adlandırılan mermerin keşfi ile sektöre adım atmıştır. 1984 yılında Kemal Arslan ve Cemil Yaşlı önderliğinde kurulan şirket yeniliklere açık ve paylaşımcı yönetim anlayışı, günden güne geliştirilen kaliteli üretim mantığı ve koşulsuz müşteri memnuniyetini temel ilkeleri olarak benimsemiştir.`,
-  `Alacakaya Mermer A.Ş., Elazığ Organize Sanayi Bölgesi’nde 8.000 m2’si kapalı olmak üzere toplam 17.000 m2 alana yayılan fabrikasında en son teknolojiye sahip makina parkıyla üretimine devam etmektedir.`,
-  `Yıllık ortalama 100.000 metreküp blok kapasitesi ile 500 civarında personeliyle bölge için önemli bir istihdam sağlayıcısı konumdadır.`,
-  `Elazığ, Malatya, Ağrı, Adana, Karaman, Adıyaman ve Diyarbakır’da bulunan çeşitli ocaklarından elde ettiği taşları kendi tesislerinde işleyen Alacakaya Mermer A.Ş., bu mermerlerin dünyanın çeşitli bölgelerindeki projelerde kullanılmasını sağlamış, dünya’da Türk Mermer çeşitlerinin markalaşmasına önemli katkıları olmuştur. Tüm Dünya’da büyük rağbet gören Rosso Levanto’nun (Elazığ Vişne) ana üreticisi durumundadır.`,
-  `Alacakaya Mermer A.Ş. ocaklarındaki güçlü makina parkı, fabrikasındaki maksimum üretim kapasitesi ve devamlılık arz eden ürünleriyle Türk Doğal taş sektörünün önemli temsilcilerindendir. Servis ve kaliteden ödün vermeden onlarca ülkeye ihracat yapan Alacakaya Mermer A.Ş. aynı kararlılık ve azimle çalışmalarına devam edecektir.`,
-  `Faaliyetlerinde; personeline ve yan sanayisine dürüst davranmak işçiler ve iş ilişkilerinde paylaşımcı olmak şirket içi uygulamalarda alt kadroları destekleyip yüreklendirerek yaratıcılığı teşvik etmek prensibini taşımaktadır. Müşteri ilişkilerinde ise çıkar gözetmeden kesintisiz bir servis anlayışla müşterilerin istek ve gereksinmelerini karşılamak temel hizmet anlayışı durumundadır.`,
-  `Alacakaya Mermer A.Ş. yıllardan beri daha mükemmele ulaşmak için başlangıçtaki istek ve heyecanını koruyarak yolunda ilerlemektedir. Alacakaya Mermer A.Ş. sektörün gelişmesi ve ilerlemesi için üzerine düşen sorumluluğun farkında, daima ileriye ve mükemmele ulaşma azmindedir.`
+  `Alacakaya Mermer A.Ş., one of the strong brands in the Natural Stone Industry of Anatolia, which is considered the cradle of civilization. It has nearly half a century of experience in the sector.`,
+  `In 1967, it stepped into the sector with the discovery of marble, which was later called Rosso Levanto. Founded in 1984 under the leadership of Kemal Arslan and Cemil Elder, the company has adopted an innovative and sharing management approach, quality production logic developed day by day and unconditional customer satisfaction as its basic principles.`,
+  `Alacakaya Mermer A.Ş. continues its production with its state-of-the-art machinery park in its factory spread over a total area of 17,000 m2, 8,000 m2 of which is closed, in the Elazığ Organized Industrial Zone.`,
+  `It is an important employment provider for the region with its average annual block capacity of 100,000 cubic meters and around 500 personnel.`,
+  `Alacakaya Mermer A.Ş., which processes the stones obtained from various quarries in Elazığ, Malatya, Ağrı, Adana, Karaman, Adıyaman and Diyarbakır in its own facilities, has ensured the use of these marbles in projects in various regions of the world and has made significant contributions to the branding of Turkish Marble varieties in the world. has happened. It is the main producer of Rosso Levanto (Elazığ Sour Cherry), which is in great demand all over the world.`,
+  `Alacakaya Mermer A.Ş. It is one of the important representatives of the Turkish natural stone industry with its powerful machinery park in its quarries, maximum production capacity in its factory and sustainable products. Alacakaya Mermer A.Ş., which exports to dozens of countries without compromising on service and quality. will continue its work with the same determination and perseverance.`,
+  `In its activities; It carries the principle of treating its personnel and sub-industry honestly, being sharing in workers and business relations, and encouraging creativity by supporting and encouraging subordinate staff in internal company practices. In customer relations, meeting the demands and needs of customers with an uninterrupted service approach without any self-interest is the basic service approach.`,
+  `Alacakaya Mermer A.Ş. For years, it has been on its way to achieve greater perfection, preserving its initial desire and excitement. Alacakaya Marble Inc. It is aware of its responsibility for the development and progress of the sector and is always determined to move forward and achieve perfection.`,
 ];
 
 export default function History() {
