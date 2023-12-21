@@ -12,6 +12,7 @@ import { Link, useNavigation, useLocalSearchParams } from "expo-router";
 import Carousel from "react-native-reanimated-carousel";
 import { Dimensions } from "react-native";
 import GalleryContainer from "../../../components/Gallery";
+import { useHeader } from "../../../context/HeaderContext";
 
 const quarries = [
   {
@@ -119,11 +120,13 @@ export default function Quarry() {
   const [quarry, setQuarry] = useState<(typeof quarries)[0] | undefined>(
     undefined
   );
+  const { setTitle } = useHeader();
 
   useEffect(() => {
     if (local.name) {
       const quarry = quarries.find((quarry) => quarry.link === local.name);
       setQuarry(quarry);
+      setTitle(quarry?.title || "QUARRIES");
     }
     return () => {
       setQuarry(undefined);

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
+import { useHeader } from "../../context/HeaderContext";
 
 const paragraph = [
   `Alacakaya Mermer A.Ş., one of the strong brands in the Natural Stone Industry of Anatolia, which is considered the cradle of civilization. It has nearly half a century of experience in the sector.`,
@@ -22,6 +23,10 @@ const paragraph = [
 ];
 
 export default function History() {
+  const { setTitle } = useHeader();
+  useEffect(() => {
+    setTitle("HISTORY");
+  }, []);
   return (
     <ScrollView style={styles.container}>
       <TouchableOpacity

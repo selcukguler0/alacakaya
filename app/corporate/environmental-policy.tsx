@@ -6,11 +6,16 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { router } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
+import { useHeader } from "../../context/HeaderContext";
 
-export default function AboutUs() {
+export default function EnvironmentalPolicy() {
+  const { setTitle } = useHeader();
+  useEffect(() => {
+    setTitle("ENVIRONMENTAL POLICY");
+  }, []);
   return (
     <ScrollView style={styles.container}>
       <TouchableOpacity

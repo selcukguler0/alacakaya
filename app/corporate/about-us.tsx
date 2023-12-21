@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import iconSet from "@expo/vector-icons/build/FontAwesome5";
+import { useHeader } from "../../context/HeaderContext";
 
 const paragraph = [
   `Alacakaya Marble, which started factory management in 1984, has constantly renovated and now has a facility with a technical team and equipment that will meet all the requirements of the age.`,
@@ -44,6 +45,10 @@ const data = [
 ];
 
 export default function AboutUs() {
+  const { setTitle } = useHeader();
+  useEffect(() => {
+    setTitle("ABOUT US");
+  }, []);
   return (
     <ScrollView style={styles.container}>
       <TouchableOpacity

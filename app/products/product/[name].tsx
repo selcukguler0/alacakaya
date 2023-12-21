@@ -7,9 +7,10 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigation, useLocalSearchParams } from "expo-router";
+import { Link, useLocalSearchParams } from "expo-router";
 import { Dimensions } from "react-native";
 import GalleryContainer from "../../../components/Gallery";
+import { useHeader } from "../../../context/HeaderContext";
 
 const products = [
   {
@@ -450,10 +451,13 @@ export default function Product() {
   const [product, setProduct] = useState<(typeof products)[0] | undefined>(
     undefined
   );
+
+  const { setTitle } = useHeader();
   useEffect(() => {
     if (local.name) {
       const product = products.find((product) => product.link === local.name);
       setProduct(product);
+      setTitle(product?.title || "PRODUCT");
     }
     return () => {
       setProduct(undefined);

@@ -6,11 +6,16 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { router } from "expo-router";
 import { A } from "@expo/html-elements";
+import { useHeader } from "../../context/HeaderContext";
 
-export default function AboutUs() {
+export default function Dealers() {
+  const { setTitle } = useHeader();
+  useEffect(() => {
+    setTitle("DEALERS");
+  }, []);
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -23,7 +28,7 @@ export default function AboutUs() {
       </TouchableOpacity>
       <View style={styles.wrapper}>
         <Text style={styles.paragraph}>
-          Suudi Arabistan ortak girişim şirketimiz Elegant Homely{" - "}
+          Our Saudi Arabia joint venture company Elegant Homely{" - "}
           <A style={styles.link} href="http://www.eleganthomely.com/">
             www.eleganthomely.com
           </A>

@@ -10,6 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import Colors from "../../constants/Colors";
 import { router } from "expo-router";
+import { useHeader } from "../../context/HeaderContext";
 
 const links = [
   {
@@ -40,6 +41,10 @@ const links = [
 ];
 
 export default function Corporate() {
+  const { setTitle } = useHeader();
+  useEffect(() => {
+    setTitle("CORPORATE");
+  }, []);
   return (
     <ScrollView style={styles.container}>
       <View style={{ flex: 1 }}>
