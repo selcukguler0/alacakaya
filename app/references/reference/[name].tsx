@@ -11,7 +11,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigation, useLocalSearchParams, router } from "expo-router";
 import { Dimensions } from "react-native";
 import GalleryContainer from "../../../components/Gallery";
-import { useHeader } from "../../../context/HeaderContext";
+
+import Header from "../../../components/Header";
 
 const references = [
   {
@@ -294,13 +295,10 @@ export default function Reference() {
     (typeof references)[0] | undefined
   >(undefined);
 
-  const { setTitle } = useHeader();
-
   useEffect(() => {
     if (local.name) {
       const reference = references.find((quarry) => quarry.link === local.name);
       setReference(reference);
-      setTitle(reference?.title || "Reference");
     }
     return () => {
       setReference(undefined);
@@ -313,6 +311,7 @@ export default function Reference() {
   const images = reference.images;
   return (
     <>
+      <Header title={reference.title} />
       {galleryIndex !== null ? (
         <GalleryContainer
           {...{ images, galleryIndex, setGalleryIndex, galleryRef }}

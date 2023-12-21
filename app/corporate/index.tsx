@@ -10,7 +10,8 @@ import {
 import React, { useEffect, useState } from "react";
 import Colors from "../../constants/Colors";
 import { router } from "expo-router";
-import { useHeader } from "../../context/HeaderContext";
+
+import Header from "../../components/Header";
 
 const links = [
   {
@@ -41,30 +42,29 @@ const links = [
 ];
 
 export default function Corporate() {
-  const { setTitle } = useHeader();
-  useEffect(() => {
-    setTitle("CORPORATE");
-  }, []);
   return (
-    <ScrollView style={styles.container}>
-      <View style={{ flex: 1 }}>
-        {links.map((item, i) => (
-          <TouchableOpacity
-            key={i}
-            style={styles.filterBtn}
-            onPress={() => router.push(item.link as `http${string}`)}
-          >
-            <ImageBackground
-              source={item.image}
-              style={styles.filterImg}
-              resizeMode="cover"
+    <>
+      <Header title="CORPORATE" />
+      <ScrollView style={styles.container}>
+        <View style={{ flex: 1 }}>
+          {links.map((item, i) => (
+            <TouchableOpacity
+              key={i}
+              style={styles.filterBtn}
+              onPress={() => router.push(item.link as `http${string}`)}
             >
-              <Text style={styles.filterText}>{item.title}</Text>
-            </ImageBackground>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </ScrollView>
+              <ImageBackground
+                source={item.image}
+                style={styles.filterImg}
+                resizeMode="cover"
+              >
+                <Text style={styles.filterText}>{item.title}</Text>
+              </ImageBackground>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
+    </>
   );
 }
 

@@ -10,6 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import Colors from "../../constants/Colors";
 import { router } from "expo-router";
+import Header from "../../components/Header";
 
 const links = [
   {
@@ -41,30 +42,33 @@ const links = [
 
 export default function Quarries() {
   return (
-    <ScrollView style={styles.container}>
-      <View style={{ flex: 1 }}>
-        {links.map((item, i) => (
-          <TouchableOpacity
-            key={i}
-            style={styles.filterBtn}
-            onPress={() =>
-              router.replace({
-                pathname: "/quarries/quarry/[name]" as `http${string}`,
-                params: { name: item.link },
-              })
-            }
-          >
-            <ImageBackground
-              source={item.image}
-              style={styles.filterImg}
-              resizeMode="cover"
+    <>
+      <Header title="QUARRIES" />
+      <ScrollView style={styles.container}>
+        <View style={{ flex: 1 }}>
+          {links.map((item, i) => (
+            <TouchableOpacity
+              key={i}
+              style={styles.filterBtn}
+              onPress={() =>
+                router.replace({
+                  pathname: "/quarries/quarry/[name]" as `http${string}`,
+                  params: { name: item.link },
+                })
+              }
             >
-              <Text style={styles.filterText}>{item.title}</Text>
-            </ImageBackground>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </ScrollView>
+              <ImageBackground
+                source={item.image}
+                style={styles.filterImg}
+                resizeMode="cover"
+              >
+                <Text style={styles.filterText}>{item.title}</Text>
+              </ImageBackground>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
+    </>
   );
 }
 

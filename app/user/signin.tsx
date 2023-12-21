@@ -14,16 +14,12 @@ import axios from "axios";
 import FormData from "form-data";
 import { storeData } from "../../utils/data-storage";
 import { User, useAuth } from "../../context/AuthContext";
-import { useHeader } from "../../context/HeaderContext";
+
+import Header from "../../components/Header";
 
 export default function SignIn() {
   const [btnLoading, setBtnLoading] = useState(false);
   const { signIn } = useAuth();
-  const { setTitle } = useHeader();
-
-  useEffect(() => {
-    setTitle("SIGN IN");
-  }, []);
 
   const [form, setForm] = useState({
     email: "",
@@ -67,7 +63,7 @@ export default function SignIn() {
   return (
     <>
       <Toast />
-
+      <Header title="SIGN IN" />
       <View style={styles.container}>
         <FontAwesome name="user" size={64} color="black" />
         <TextInput

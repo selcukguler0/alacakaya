@@ -9,7 +9,8 @@ import {
 import React, { useEffect } from "react";
 import Colors from "../../constants/Colors";
 import { router } from "expo-router";
-import { useHeader } from "../../context/HeaderContext";
+
+import Header from "../../components/Header";
 
 const references = [
   {
@@ -55,13 +56,10 @@ const references = [
 ];
 
 export default function Abroad() {
-  const { setTitle } = useHeader();
-
-  useEffect(() => {
-    setTitle("ABROAD");
-  }, []);
   return (
-    <View style={styles.container}>
+    <>
+      <Header title="ABROAD" />
+      <View style={styles.container}>
       <TouchableOpacity
         onPress={() => router.push("/references/")}
         style={styles.backBtn}
@@ -88,6 +86,7 @@ export default function Abroad() {
         keyExtractor={(item) => item.title}
       />
     </View>
+    </>
   );
 }
 

@@ -477,7 +477,7 @@ export default function Product() {
         />
       ) : (
         <ScrollView style={styles.container}>
-          <Link href="/products/" style={styles.backBtn}>
+          <Link href="/shop/" style={styles.backBtn}>
             Back to Products
           </Link>
           <View style={styles.wrapper}>

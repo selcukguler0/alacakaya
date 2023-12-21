@@ -15,7 +15,8 @@ import { API_URL } from "../../constants/Enpoints";
 import { ErrorToast } from "react-native-toast-message";
 import axios from "axios";
 import FormData from "form-data";
-import { useHeader } from "../../context/HeaderContext";
+
+import { Header } from "react-native/Libraries/NewAppScreen";
 
 export default function SignUp() {
   const [form, setForm] = useState({
@@ -28,12 +29,6 @@ export default function SignUp() {
     city: "",
     companyName: "",
   });
-  const { setTitle } = useHeader();
-
-  useEffect(() => {
-    setTitle("SIGN UP");
-  }, []);
-
   const signUpHandler = async () => {
     if (!form.email || !form.password || !form.passwordConfirm || !form.name_surname || !form.phone || !form.country || !form.city || !form.companyName) {
       showToast("error", "Please fill in all fields!");
@@ -97,6 +92,7 @@ export default function SignUp() {
   return (
     <>
       <Toast config={toastConfig} />
+      <Header title="SIGN UP" />
 
       <ScrollView
         contentContainerStyle={{

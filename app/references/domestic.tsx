@@ -9,7 +9,8 @@ import {
 import React, { useEffect } from "react";
 import Colors from "../../constants/Colors";
 import { router } from "expo-router";
-import { useHeader } from "../../context/HeaderContext";
+
+import Header from "../../components/Header";
 
 const references = [
   {
@@ -70,13 +71,10 @@ const references = [
 ];
 
 export default function Domestic() {
-  const { setTitle } = useHeader();
-
-  useEffect(() => {
-    setTitle("DOMESTIC");
-  }, []);
   return (
-    <View style={styles.container}>
+    <>
+      <Header title="DOMESTIC" />
+      <View style={styles.container}>
       <TouchableOpacity
         onPress={() => router.push("/references/")}
         style={styles.backBtn}
@@ -107,6 +105,7 @@ export default function Domestic() {
         keyExtractor={(item) => item.title}
       />
     </View>
+    </>
   );
 }
 

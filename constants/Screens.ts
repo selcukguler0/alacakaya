@@ -12,6 +12,12 @@ export default [
     icon: "cube",
     show: true,
   },
+  {
+    title: "SHOP",
+    path: "products/index",
+    icon: "shopping-cart",
+    show: true,
+  },
   //references
   {
     title: "REFERENCES",

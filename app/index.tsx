@@ -9,15 +9,16 @@ import {
 } from "react-native";
 
 import { router } from "expo-router";
-import { useHeader } from "../context/HeaderContext";
+
 import { useEffect } from "react";
+import Header from "../components/Header";
 
 const productsIcon = require("../assets/icons/products.png");
 const shopIcon = require("../assets/icons/shop.png");
 const corporateIcon = require("../assets/icons/corporate.png");
 const referancesIcon = require("../assets/icons/referances.png");
-const factoryIcon = require("../assets/icons/factory.png");
 const quarriesIcon = require("../assets/icons/quarries.png");
+// const factoryIcon = require("../assets/icons/factory.png");
 
 const menu: MenuItems[] = [
   {
@@ -53,15 +54,12 @@ const menu: MenuItems[] = [
 ];
 
 export default function Home() {
-  const { setTitle } = useHeader();
-  useEffect(() => {
-    setTitle("HOME");
-  }, []);
   const navigationHandler = (href: string) => {
     router.push(href as `http${string}`);
   };
   return (
     <>
+      <Header title="HOME" />
       <View style={styles.container}>
         <View style={styles.logoContainer}>
           <View style={styles.line}></View>

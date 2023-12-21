@@ -10,7 +10,8 @@ import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import iconSet from "@expo/vector-icons/build/FontAwesome5";
-import { useHeader } from "../../context/HeaderContext";
+
+import Header from "../../components/Header";
 
 const paragraph = [
   `Alacakaya Marble, which started factory management in 1984, has constantly renovated and now has a facility with a technical team and equipment that will meet all the requirements of the age.`,
@@ -45,73 +46,72 @@ const data = [
 ];
 
 export default function AboutUs() {
-  const { setTitle } = useHeader();
-  useEffect(() => {
-    setTitle("ABOUT US");
-  }, []);
   return (
-    <ScrollView style={styles.container}>
-      <TouchableOpacity
-        onPress={() => router.push("/corporate/")}
-        style={styles.backBtn}
-      >
-        <Text style={{ fontSize: 20, marginRight: 10, color: "#fff" }}>
-          {"<- Corporate"}
-        </Text>
-      </TouchableOpacity>
-      <View style={styles.wrapper}>
-        <Text style={styles.subtitle}>
-          Alacakaya Marble, with its 5 quarries and 500 employees, is superior
-          to its customers. technology, high precision and brand quality.
-        </Text>
-        {paragraph.map((p, i) => (
-          <Text key={i} style={styles.paragraph}>
-            {p}
+    <>
+      <Header title="ABOUT US" />
+      <ScrollView style={styles.container}>
+        <TouchableOpacity
+          onPress={() => router.push("/corporate/")}
+          style={styles.backBtn}
+        >
+          <Text style={{ fontSize: 20, marginRight: 10, color: "#fff" }}>
+            {"<- Corporate"}
           </Text>
-        ))}
+        </TouchableOpacity>
+        <View style={styles.wrapper}>
+          <Text style={styles.subtitle}>
+            Alacakaya Marble, with its 5 quarries and 500 employees, is superior
+            to its customers. technology, high precision and brand quality.
+          </Text>
+          {paragraph.map((p, i) => (
+            <Text key={i} style={styles.paragraph}>
+              {p}
+            </Text>
+          ))}
 
-        <Image
-          style={styles.inlineImage}
-          source={require("../../assets/images/corporate/2.jpg")}
-        />
+          <Image
+            style={styles.inlineImage}
+            source={require("../../assets/images/corporate/2.jpg")}
+          />
 
-        <Text style={styles.altParagraph}>
-          Alacakaya Marble Inc. is a company that focuses on the millions of
-          years adventure of marble. with the admiration we feel, having
-          aesthetic and value-adding applications We are proud of introducing
-          our resources to the world. With the same spirit and the desire to
-          serve the sector for many more years we believe.
-        </Text>
+          <Text style={styles.altParagraph}>
+            Alacakaya Marble Inc. is a company that focuses on the millions of
+            years adventure of marble. with the admiration we feel, having
+            aesthetic and value-adding applications We are proud of introducing
+            our resources to the world. With the same spirit and the desire to
+            serve the sector for many more years we believe.
+          </Text>
 
-        <View style={styles.list}>
-          <Text style={styles.listItem}>
-            <FontAwesome name="check" size={20} color="black" />
-            Innovative and Sharing Management Approach
-          </Text>
-          <Text style={styles.listItem}>
-            <FontAwesome name="check" size={20} color="black" />
-            Unconditional Customer Satisfaction
-          </Text>
-          <Text style={styles.listItem}>
-            <FontAwesome name="check" size={20} color="black" />
-            Machine Parks with the Latest Technology
-          </Text>
-        </View>
-      </View>
-      <View>
-        {data.map((item, i) => (
-          <View key={i} style={styles.item}>
-            <Text style={styles.itemTitle}>{item.title}</Text>
-            <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
-            <FontAwesome
-              name={item.icon as typeof iconSet}
-              size={24}
-              color="black"
-            />
+          <View style={styles.list}>
+            <Text style={styles.listItem}>
+              <FontAwesome name="check" size={20} color="black" />
+              Innovative and Sharing Management Approach
+            </Text>
+            <Text style={styles.listItem}>
+              <FontAwesome name="check" size={20} color="black" />
+              Unconditional Customer Satisfaction
+            </Text>
+            <Text style={styles.listItem}>
+              <FontAwesome name="check" size={20} color="black" />
+              Machine Parks with the Latest Technology
+            </Text>
           </View>
-        ))}
-      </View>
-    </ScrollView>
+        </View>
+        <View>
+          {data.map((item, i) => (
+            <View key={i} style={styles.item}>
+              <Text style={styles.itemTitle}>{item.title}</Text>
+              <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
+              <FontAwesome
+                name={item.icon as typeof iconSet}
+                size={24}
+                color="black"
+              />
+            </View>
+          ))}
+        </View>
+      </ScrollView>
+    </>
   );
 }
 

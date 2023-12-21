@@ -8,6 +8,7 @@ import {
 import React, { useEffect, useState } from "react";
 import Colors from "../../constants/Colors";
 import { router } from "expo-router";
+import Header from "../../components/Header";
 const references = {
   abroad: [
     {
@@ -91,36 +92,38 @@ const references = {
   ],
 };
 export default function References() {
- 
   return (
-    <View style={styles.container}>
-      <View style={{ flex: 1 }}>
-        <TouchableOpacity
-          style={styles.filterBtn}
-          onPress={() => router.push("/references/abroad")}
-        >
-          <ImageBackground
-            source={references.abroad[0].image}
-            style={styles.filterImg}
-            resizeMode="cover"
+    <>
+      <Header title="REFERENCES" />
+      <View style={styles.container}>
+        <View style={{ flex: 1 }}>
+          <TouchableOpacity
+            style={styles.filterBtn}
+            onPress={() => router.push("/references/abroad")}
           >
-            <Text style={styles.filterText}>Abroad</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.filterBtn}
-          onPress={() => router.push("/references/domestic")}
-        >
-          <ImageBackground
-            source={references.domestic[1].image}
-            style={styles.filterImg}
-            resizeMode="cover"
+            <ImageBackground
+              source={references.abroad[0].image}
+              style={styles.filterImg}
+              resizeMode="cover"
+            >
+              <Text style={styles.filterText}>Abroad</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.filterBtn}
+            onPress={() => router.push("/references/domestic")}
           >
-            <Text style={styles.filterText}>Domestic</Text>
-          </ImageBackground>
-        </TouchableOpacity>
+            <ImageBackground
+              source={references.domestic[1].image}
+              style={styles.filterImg}
+              resizeMode="cover"
+            >
+              <Text style={styles.filterText}>Domestic</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 

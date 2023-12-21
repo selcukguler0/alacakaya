@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
-import { useHeader } from "../../context/HeaderContext";
+
+import Header from "../../components/Header";
 
 const paragraph = [
   `Alacakaya Mermer A.Ş., one of the strong brands in the Natural Stone Industry of Anatolia, which is considered the cradle of civilization. It has nearly half a century of experience in the sector.`,
@@ -28,6 +29,8 @@ export default function History() {
     setTitle("HISTORY");
   }, []);
   return (
+    <>
+    <Header title="HISTORY" />
     <ScrollView style={styles.container}>
       <TouchableOpacity
         onPress={() => router.push("/corporate/")}
@@ -44,7 +47,7 @@ export default function History() {
           </Text>
         ))}
       </View>
-    </ScrollView>
+    </ScrollView></>
   );
 }
 
