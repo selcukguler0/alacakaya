@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { DrawerActions } from "@react-navigation/native";
 import {
@@ -9,19 +9,17 @@ import Colors from "../constants/Colors";
 import { DrawerHeaderProps } from "@react-navigation/drawer";
 import { useRoute } from "@react-navigation/native";
 import Screens from "../constants/Screens";
+import { useHeader } from "../context/HeaderContext";
 
 const logo = require("../assets/images/logoWhite.png");
 
-type Props = {
-  headerTitleProp?: string;
-} & DrawerHeaderProps;
-
 const Header = ({ navigation }: DrawerHeaderProps) => {
+  const { title } = useHeader();
+
   const [headerTitle, setHeaderTitle] = useState("");
   const insets = useSafeAreaInsets();
 
-  const routes = useRoute();
-  const route = routes;
+  const route = useRoute();
   useEffect(() => {
     if (route.name.includes("quarry") && route.params) {
       switch ((route.params as any).name) {
@@ -153,7 +151,7 @@ const Header = ({ navigation }: DrawerHeaderProps) => {
           <Text style={styles.divider}>|</Text>
         </>
       )}
-      <Text style={styles.title}>{headerTitle}</Text>
+      <Text style={styles.title}>{title}</Text>
     </View>
   );
 };

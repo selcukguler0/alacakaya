@@ -9,6 +9,8 @@ import {
 } from "react-native";
 
 import { router } from "expo-router";
+import { useHeader } from "../context/HeaderContext";
+import { useEffect } from "react";
 
 const productsIcon = require("../assets/icons/products.png");
 const shopIcon = require("../assets/icons/shop.png");
@@ -38,11 +40,11 @@ const menu: MenuItems[] = [
     icon: referancesIcon,
     href: "/references",
   },
-  {
-    title: "FACTORY",
-    icon: factoryIcon,
-    href: "/products",
-  },
+  // {
+  //   title: "FACTORY",
+  //   icon: factoryIcon,
+  //   href: "/products",
+  // },
   {
     title: "QUARRIES",
     icon: quarriesIcon,
@@ -51,6 +53,10 @@ const menu: MenuItems[] = [
 ];
 
 export default function Home() {
+  const { setTitle } = useHeader();
+  useEffect(() => {
+    setTitle("HOME");
+  }, []);
   const navigationHandler = (href: string) => {
     router.push(href as `http${string}`);
   };
@@ -82,7 +88,6 @@ export default function Home() {
               <Pressable
                 style={styles.item}
                 onPress={() => navigationHandler(item.href as string)}
-                
               >
                 <>
                   <Image style={styles.itemIcon} source={item.icon} />

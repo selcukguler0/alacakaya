@@ -6,9 +6,10 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Colors from "../../constants/Colors";
 import { router } from "expo-router";
+import { useHeader } from "../../context/HeaderContext";
 
 const references = [
   {
@@ -53,7 +54,12 @@ const references = [
   },
 ];
 
-export default function References() {
+export default function Abroad() {
+  const { setTitle } = useHeader();
+
+  useEffect(() => {
+    setTitle("ABROAD");
+  }, []);
   return (
     <View style={styles.container}>
       <TouchableOpacity

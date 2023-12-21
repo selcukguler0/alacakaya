@@ -20,6 +20,7 @@ import {
 import { AuthProvider, useAuth } from "../context/AuthContext";
 import Screens from "../constants/Screens";
 import { getData, removeData } from "../utils/data-storage";
+import { HeaderProvider } from "../context/HeaderContext";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -96,8 +97,10 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
-      <RootLayoutNav />
-      <BackgroundImage />
+      <HeaderProvider>
+        <RootLayoutNav />
+        <BackgroundImage />
+      </HeaderProvider>
     </AuthProvider>
   );
 }

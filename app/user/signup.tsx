@@ -7,7 +7,7 @@ import {
   Text,
   ScrollView,
 } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { Toast, showToast, toastConfig } from "../../utils/toast";
 import { router } from "expo-router";
@@ -15,6 +15,7 @@ import { API_URL } from "../../constants/Enpoints";
 import { ErrorToast } from "react-native-toast-message";
 import axios from "axios";
 import FormData from "form-data";
+import { useHeader } from "../../context/HeaderContext";
 
 export default function SignUp() {
   const [form, setForm] = useState({
@@ -27,9 +28,13 @@ export default function SignUp() {
     city: "",
     companyName: "",
   });
+  const { setTitle } = useHeader();
+
+  useEffect(() => {
+    setTitle("SIGN UP");
+  }, []);
 
   const signUpHandler = async () => {
-    console.log(form);
     if (!form.email || !form.password || !form.passwordConfirm || !form.name_surname || !form.phone || !form.country || !form.city || !form.companyName) {
       showToast("error", "Please fill in all fields!");
       return;

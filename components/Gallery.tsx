@@ -39,7 +39,7 @@ export default function GalleryContainer({
             {galleryIndex + 1} of {images.length}
           </Text>
         </View>
-        <TouchableOpacity onPress={() => setGalleryIndex(null)}>
+        <TouchableOpacity style={styles.closeBtn} onPress={() => setGalleryIndex(null)}>
           <Text style={{ color: "#fff" }}>Close</Text>
         </TouchableOpacity>
       </Animated.View>
@@ -143,5 +143,12 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     borderWidth: 1,
     borderRadius: 10,
+  },
+  closeBtn: {
+    backgroundColor: "#0006",
+    padding: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#fff",
   },
 });

@@ -1,7 +1,6 @@
 import {
   View,
   StyleSheet,
-  ImageSourcePropType,
   TextInput,
   TouchableOpacity,
   Text,
@@ -9,22 +8,21 @@ import {
 } from "react-native";
 import { useEffect, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import { router, useLocalSearchParams } from "expo-router";
+import { router } from "expo-router";
 import { Toast, showToast } from "../../utils/toast";
 import axios from "axios";
 import FormData from "form-data";
 import { storeData } from "../../utils/data-storage";
 import { User, useAuth } from "../../context/AuthContext";
+import { useHeader } from "../../context/HeaderContext";
 
 export default function SignIn() {
-  const params = useLocalSearchParams();
   const [btnLoading, setBtnLoading] = useState(false);
   const { signIn } = useAuth();
+  const { setTitle } = useHeader();
 
   useEffect(() => {
-    if (params.signup) {
-      showToast("success", "Sign up successful! Please sign in.");
-    }
+    setTitle("SIGN IN");
   }, []);
 
   const [form, setForm] = useState({

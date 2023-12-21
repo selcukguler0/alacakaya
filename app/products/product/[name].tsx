@@ -1,9 +1,15 @@
-import { Image, Text, View, ScrollView, StyleSheet } from "react-native";
+import {
+  Image,
+  Text,
+  View,
+  ScrollView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigation, useLocalSearchParams } from "expo-router";
-// import Carousel from "react-native-snap-carousel";
-import Carousel from "react-native-reanimated-carousel";
 import { Dimensions } from "react-native";
+import GalleryContainer from "../../../components/Gallery";
 
 const products = [
   {
@@ -437,7 +443,9 @@ const products = [
 ];
 
 export default function Product() {
-  const navigation = useNavigation();
+  const galleryRef = useRef(null);
+  const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
+
   const local = useLocalSearchParams();
   const [product, setProduct] = useState<(typeof products)[0] | undefined>(
     undefined
@@ -456,95 +464,81 @@ export default function Product() {
     return null;
   }
 
+  const images = product.images;
   return (
-    <ScrollView style={styles.container}>
-      <Link href="/products/" style={styles.backBtn}>
-        Back to Products
-      </Link>
-      <View style={styles.wrapper}>
-        <MyCarousel entries={product.images} />
-        {product.technical_specs && (
-          <>
-            <Text style={styles.subtitle}>TECHNICAL SPECIFICATIONS</Text>
-            {product.technical_specs.map((spec) => (
-              <View
-                key={spec.title}
-                style={{
-                  width: "100%",
-                  paddingVertical: 10,
-                  paddingHorizontal: 20,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  borderRadius: 10,
-                  backgroundColor: "#fff2",
-                  borderColor: "#000",
-                  borderWidth: 1,
-                  marginBottom: 10,
-                }}
-              >
-                <Text style={styles.bold}>{spec.title}</Text>
-                <Text style={styles.paragraph}>{spec.value}</Text>
-              </View>
-            ))}
-          </>
-        )}
-      </View>
-    </ScrollView>
+    <>
+      {galleryIndex !== null ? (
+        <GalleryContainer
+          {...{ images, galleryIndex, setGalleryIndex, galleryRef }}
+        />
+      ) : (
+        <ScrollView style={styles.container}>
+          <Link href="/products/" style={styles.backBtn}>
+            Back to Products
+          </Link>
+          <View style={styles.wrapper}>
+            {/* photos */}
+            <View style={styles.imagesContainer}>
+              {product.images.map((image, index) => (
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    setGalleryIndex(index);
+                  }}
+                  key={index}
+                >
+                  <Image
+                    source={image}
+                    style={{
+                      width: Dimensions.get("window").width / 2 - 15,
+                      height: 200,
+                      resizeMode: "cover",
+                      marginBottom: 10,
+                    }}
+                  />
+                </TouchableWithoutFeedback>
+              ))}
+            </View>
+            {product.technical_specs && (
+              <>
+                <Text style={styles.subtitle}>TECHNICAL SPECIFICATIONS</Text>
+                {product.technical_specs.map((spec) => (
+                  <View
+                    key={spec.title}
+                    style={{
+                      width: "100%",
+                      paddingVertical: 10,
+                      paddingHorizontal: 20,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      borderRadius: 10,
+                      backgroundColor: "#fff2",
+                      borderColor: "#000",
+                      borderWidth: 1,
+                      marginBottom: 10,
+                    }}
+                  >
+                    <Text style={styles.bold}>{spec.title}</Text>
+                    <Text style={styles.paragraph}>{spec.value}</Text>
+                  </View>
+                ))}
+              </>
+            )}
+          </View>
+        </ScrollView>
+      )}
+    </>
   );
 }
 
-const MyCarousel = ({ entries }: any) => {
-  const carouselRef = useRef(null);
-  //get device width
-  const renderItem = ({ item, index }: any) => (
-    <View>
-      <Image
-        source={item}
-        style={{
-          width: 300,
-          height: 300,
-        }}
-      />
-    </View>
-  );
-  const windowWidth = Dimensions.get("window").width;
-
-  const baseOptions = {
-    vertical: false,
-    width: windowWidth,
-    height: 500 * 0.6,
-  } as const;
-
-  return (
-    <Carousel
-      {...baseOptions}
-      style={{
-        width: windowWidth,
-        alignItems: "center",
-        justifyContent: "center",
-        marginLeft: 20,
-      }}
-      loop
-      pagingEnabled={true}
-      snapEnabled={true}
-      autoPlay={true}
-      autoPlayInterval={1500}
-      // onProgressChange={(_, absoluteProgress) =>
-      //   (progressValue.value = absoluteProgress)
-      // }
-      modeConfig={{
-        snapDirection: "left",
-        stackInterval: 18,
-      }}
-      mode="horizontal-stack"
-      data={entries}
-      renderItem={({ index }) => renderItem({ item: entries[index], index })}
-    />
-  );
-};
-
 const styles = StyleSheet.create({
+  imagesContainer: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: 10,
+  },
   container: {
     flex: 1,
   },

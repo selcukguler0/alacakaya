@@ -3,7 +3,6 @@ import {
   Text,
   View,
   ScrollView,
-  FlatList,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
@@ -95,23 +94,17 @@ export default function AboutUs() {
         </View>
       </View>
       <View>
-        <FlatList
-          data={data}
-          numColumns={2}
-          renderItem={({ item }) => (
-            <View style={styles.item}>
-              <Text style={styles.itemTitle}>{item.title}</Text>
-              <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
-              <FontAwesome
-                name={item.icon as typeof iconSet}
-                size={24}
-                color="black"
-              />
-            </View>
-          )}
-          style={{ width: "100%" }}
-          keyExtractor={(item) => item.title}
-        />
+        {data.map((item, i) => (
+          <View key={i} style={styles.item}>
+            <Text style={styles.itemTitle}>{item.title}</Text>
+            <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
+            <FontAwesome
+              name={item.icon as typeof iconSet}
+              size={24}
+              color="black"
+            />
+          </View>
+        ))}
       </View>
     </ScrollView>
   );

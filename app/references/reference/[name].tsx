@@ -11,9 +11,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigation, useLocalSearchParams, router } from "expo-router";
 import { Dimensions } from "react-native";
 import GalleryContainer from "../../../components/Gallery";
+import { useHeader } from "../../../context/HeaderContext";
 
 const references = [
   {
+    title: "Atana Hotel",
     link: "atana-hotel",
     images: [
       require("../../../assets/images/references/abroad/atana-hotel/1.jpg"),
@@ -22,6 +24,7 @@ const references = [
     location: "abroad",
   },
   {
+    title: "Kabe - Mekke",
     link: "kabe-mekke",
     images: [
       require("../../../assets/images/references/abroad/kabe-mekke/1.jpg"),
@@ -35,6 +38,7 @@ const references = [
     location: "abroad",
   },
   {
+    title: "Hotel Galleria",
     link: "hotel-galleria",
     images: [
       require("../../../assets/images/references/abroad/hotel-galleria/1.jpg"),
@@ -46,6 +50,7 @@ const references = [
     location: "abroad",
   },
   {
+    title: "Intourist Palace Hotel",
     link: "intourist-palace-hotel",
     images: [
       require("../../../assets/images/references/abroad/intourist-palace-hotel/1.jpg"),
@@ -58,6 +63,7 @@ const references = [
     location: "abroad",
   },
   {
+    title: "Royal Mediterranean Hotel",
     link: "royal-mediterranean-hotel",
     images: [
       require("../../../assets/images/references/abroad/royal-mediterranean/1.jpg"),
@@ -75,6 +81,7 @@ const references = [
     location: "abroad",
   },
   {
+    title: "Atlantis Hotel Dubai",
     link: "atlantis-hotel-dubai",
     images: [
       require("../../../assets/images/references/abroad/atlantis-hotel-dubai/1.jpg"),
@@ -87,6 +94,7 @@ const references = [
     location: "abroad",
   },
   {
+    title: "Pera Palace",
     link: "pera-palace",
     images: [
       require("../../../assets/images/references/abroad/pera-palace/1.jpg"),
@@ -104,6 +112,7 @@ const references = [
     location: "abroad",
   },
   {
+    title: "Cratos Hotel",
     link: "cratos-hotel",
     images: [
       require("../../../assets/images/references/abroad/cratos-hotel/1.jpg"),
@@ -117,6 +126,7 @@ const references = [
     location: "abroad",
   },
   {
+    title: "Savoy Residence",
     link: "savoy-residence",
     images: [
       require("../../../assets/images/references/domestic/savoy-residence/1.jpg"),
@@ -130,6 +140,7 @@ const references = [
     location: "domestic",
   },
   {
+    title: "The Galata Hotel",
     link: "the-galata-hotel",
     images: [
       require("../../../assets/images/references/domestic/the-galata-hotel/1.jpg"),
@@ -139,6 +150,7 @@ const references = [
     location: "domestic",
   },
   {
+    title: "Titanic Business",
     link: "titanic-business",
     images: [
       require("../../../assets/images/references/domestic/titanic-business/1.jpg"),
@@ -154,6 +166,7 @@ const references = [
     location: "domestic",
   },
   {
+    title: "Acıbadem Maslak",
     link: "acibadem-maslak",
     images: [
       require("../../../assets/images/references/domestic/acibadem-maslak/1.jpg"),
@@ -167,6 +180,7 @@ const references = [
     location: "domestic",
   },
   {
+    title: "Sapphire Residence",
     link: "sapphire-residence",
     images: [
       require("../../../assets/images/references/domestic/sapphire-residence/1.jpg"),
@@ -179,6 +193,7 @@ const references = [
     location: "domestic",
   },
   {
+    title: "Taksim Divan Otel",
     link: "taksim-divan-otel",
     images: [
       require("../../../assets/images/references/domestic/taksim-divan-otel/1.jpg"),
@@ -195,6 +210,7 @@ const references = [
     location: "domestic",
   },
   {
+    title: "Shangri-La Beşiktaş",
     link: "shangri-la-besiktas",
     images: [
       require("../../../assets/images/references/domestic/shangri-la-besiktas/1.jpg"),
@@ -213,6 +229,7 @@ const references = [
     location: "domestic",
   },
   {
+    title: "Onaltı Dokuz",
     link: "onalti-dokuz",
     images: [
       require("../../../assets/images/references/domestic/onalti-dokuz/1.jpg"),
@@ -222,6 +239,7 @@ const references = [
     location: "domestic",
   },
   {
+    title: "Wyndham Grand",
     link: "wyndham-grand",
     images: [
       require("../../../assets/images/references/domestic/wyndham-grand/1.jpg"),
@@ -235,6 +253,7 @@ const references = [
     location: "domestic",
   },
   {
+    title: "Tekfen Residence",
     link: "tekfen-residence",
     images: [
       require("../../../assets/images/references/domestic/tekfen-residence/1.jpg"),
@@ -247,6 +266,7 @@ const references = [
     location: "domestic",
   },
   {
+    title: "The Grand Tarabya",
     link: "the-grand-tarabya",
     images: [
       require("../../../assets/images/references/domestic/the-grand-tarabya/1.jpg"),
@@ -268,16 +288,19 @@ const references = [
 
 export default function Reference() {
   const galleryRef = useRef(null);
+  const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
   const local = useLocalSearchParams();
   const [reference, setReference] = useState<
     (typeof references)[0] | undefined
   >(undefined);
-  const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
+
+  const { setTitle } = useHeader();
 
   useEffect(() => {
     if (local.name) {
       const reference = references.find((quarry) => quarry.link === local.name);
       setReference(reference);
+      setTitle(reference?.title || "Reference");
     }
     return () => {
       setReference(undefined);
