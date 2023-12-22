@@ -10,9 +10,6 @@ import {
 import { useEffect, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { Toast, showToast, toastConfig } from "../../utils/toast";
-import { router } from "expo-router";
-import { API_URL } from "../../constants/Enpoints";
-import { ErrorToast } from "react-native-toast-message";
 import axios from "axios";
 import FormData from "form-data";
 

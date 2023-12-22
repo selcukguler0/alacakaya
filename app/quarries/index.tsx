@@ -12,33 +12,32 @@ import Colors from "../../constants/Colors";
 import { router } from "expo-router";
 import Header from "../../components/Header";
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 const links = [
   {
     title: "Karaman Beige Quarry",
     link: "karaman-beige-quarry",
-    image: `${API_URL}/mobil/images/quarries/1.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/quarries/1.jpg`,
   },
   {
     title: "Elazığ Cherry Quarry",
     link: "elazig-cherry-quarry",
-    image: `${API_URL}/mobil/images/quarries/2.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/quarries/2.jpg`,
   },
   {
     title: "Black Pearl Quarry",
     link: "black-pearl-quarry",
-    image: `${API_URL}/mobil/images/quarries/3.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/quarries/3.jpg`,
   },
   {
     title: "Petrol Green Quarry",
     link: "petrol-green-quarry",
-    image: `${API_URL}/mobil/images/quarries/4.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/quarries/4.jpg`,
   },
   {
     title: "Kütahya Quarry",
     link: "kutahya-quarry",
-    image: `${API_URL}/mobil/images/quarries/5.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/quarries/5.jpg`,
   },
 ];
 

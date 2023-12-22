@@ -12,47 +12,46 @@ import { router } from "expo-router";
 
 import Header from "../../components/Header";
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 const references = [
   {
     title: "Atana Hotel - BAE",
-    image: `${API_URL}/mobil/images/references/abroad/1.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/1.jpg`,
     link: "atana-hotel",
   },
   {
     title: "Kâbe - Mekke, Suudi Arabistan",
-    image: `${API_URL}/mobil/images/references/abroad/2.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/2.jpg`,
     link: "kabe-mekke",
   },
   {
     title: "Hotel Galleria - Jeddah",
-    image: `${API_URL}/mobil/images/references/abroad/3.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/3.jpg`,
     link: "hotel-galleria",
   },
   {
     title: "Intourist Palace Hotel - Gürcistan",
-    image: `${API_URL}/mobil/images/references/abroad/4.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/4.jpg`,
     link: "intourist-palace-hotel",
   },
   {
     title: "Royal Mediterranean Hotel - China",
-    image: `${API_URL}/mobil/images/references/abroad/5.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/5.jpg`,
     link: "royal-mediterranean-hotel",
   },
   {
     title: "Atlantis Hotel Dubai - BAE",
-    image: `${API_URL}/mobil/images/references/abroad/6.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/6.jpg`,
     link: "atlantis-hotel-dubai",
   },
   {
     title: "Pera Palace - İstanbul",
-    image: `${API_URL}/mobil/images/references/abroad/7.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/7.jpg`,
     link: "pera-palace",
   },
   {
     title: "Cratos Hotel - Cyprus",
-    image: `${API_URL}/mobil/images/references/abroad/8.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/8.jpg`,
     link: "cratos-hotel",
   },
 ];

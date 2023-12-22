@@ -18,9 +18,8 @@ interface Product {
 
 export default function Shop() {
   const [products, setProducts] = useState<[] | Product[]>([]);
-  const API_URL = process.env.EXPO_PUBLIC_API_URL;
   useEffect(() => {
-    axios.get(API_URL + "/get-all-products").then((res) => {
+    axios.get("http://mobil.alacakaya.com/get-all-products").then((res) => {
       setProducts(res.data);
 
       //kayıtlı veri ile gelen veri aynı değilse kaydet
@@ -52,7 +51,7 @@ export default function Shop() {
             style={styles.item}
           >
             <ImageBackground
-              source={{uri: `${API_URL}/mobil/images/products/${product.id}/${product.image_paths[0]}`}}
+              source={{uri: `http://mobil.alacakaya.com/mobil/images/products/${product.id}/${product.image_paths[0]}`}}
               style={styles.item}
               resizeMode="cover"
             >

@@ -20,7 +20,6 @@ export default function Bucket() {
   const isFocused = useIsFocused();
 
   const [bucket, setBucket] = useState<BucketItem[] | "loading">("loading");
-  const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
   useEffect(() => {
     const updateBucket = async () => {
@@ -81,7 +80,7 @@ export default function Bucket() {
           {bucket.map((product) => (
             <View key={product.id} style={styles.item}>
               <Image
-                source={`${API_URL}/mobil/images/products/${product.id}/${product.img}`}
+                source={`http://mobil.alacakaya.com/mobil/images/products/${product.id}/${product.img}`}
                 style={styles.image}
                 contentFit="contain"
               />

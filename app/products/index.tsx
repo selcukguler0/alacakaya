@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { getData, storeData } from "../../utils/data-storage";
 interface Product {
   id: string;
@@ -18,48 +17,47 @@ interface Product {
 
 export default function Products() {
   const [products, setProducts] = useState<[] | Product[]>([]);
-  const API_URL = process.env.EXPO_PUBLIC_API_URL;
   useEffect(() => {
-    axios.get(API_URL + "/get-all-products").then((res) => {
-      setProducts(res.data);
-
-      //kayıtlı veri ile gelen veri aynı değilse kaydet
-      getData("products").then((stored) => {
-        if (stored !== res.data) {
-          storeData("products", res.data);
-        }
-      });
-    });
+    req();
   }, []);
-
-  if (!products.length) {
-    return null;
-  }
+  const req = async () => {
+    const res = await fetch("http://mobil.alacakaya.com/get-all-products");
+    const data = await res.json();
+    setProducts(data);
+    getData("products").then((stored) => {
+      if (stored !== data) {
+        storeData("products", data);
+      }
+    });
+  };
 
   return (
     <>
       <Header title="PRODUCTS" />
       <ScrollView style={styles.container}>
-        {products.map((product) => (
-          <TouchableOpacity
-            onPress={() =>
-              router.replace({
-                pathname: "/products/product/[name]" as `http${string}`,
-                params: { id: product.id || "karaman-cream" },
-              })
-            }
-            key={product.id}
-            style={styles.item}
-          >
-            <ImageBackground
-              source={{uri: `${API_URL}/mobil/images/products/${product.id}/${product.image_paths[0]}`}}
+        {products &&
+          products.map((product) => (
+            <TouchableOpacity
+              onPress={() =>
+                router.replace({
+                  pathname: "/products/product/[name]" as `http${string}`,
+                  params: { id: product.id || "karaman-cream" },
+                })
+              }
+              key={product.id}
               style={styles.item}
-              resizeMode="cover"
             >
-              <Text style={styles.title}>{product.name}</Text>
-            </ImageBackground>
-          </TouchableOpacity>
-        ))}
+              <ImageBackground
+                source={{
+                  uri: `http://mobil.alacakaya.com/mobil/images/products/${product.id}/${product.image_paths[0]}`,
+                }}
+                style={styles.item}
+                resizeMode="cover"
+              >
+                <Text style={styles.title}>{product.name}</Text>
+              </ImageBackground>
+            </TouchableOpacity>
+          ))}
       </ScrollView>
     </>
   );

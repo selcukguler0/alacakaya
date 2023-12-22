@@ -12,62 +12,61 @@ import { router } from "expo-router";
 
 import Header from "../../components/Header";
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 const references = [
   {
     title: "Savoy Residence - İstanbul",
-    image: `${API_URL}/mobil/images/references/domestic/1.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/1.jpg`,
     link: "savoy-residence",
   },
   {
     title: "The Galata Hotel - İstanbul",
-    image: `${API_URL}/mobil/images/references/domestic/2.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/2.jpg`,
     link: "the-galata-hotel",
   },
   {
     title: "Titanic Business - İstanbul",
-    image: `${API_URL}/mobil/images/references/domestic/3.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/3.jpg`,
     link: "titanic-business",
   },
   {
     title: "Acıbadem Maslak - İstanbul",
-    image: `${API_URL}/mobil/images/references/domestic/4.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/4.jpg`,
     link: "acibadem-maslak",
   },
   {
     title: "Sapphire Residence - İstanbul",
-    image: `${API_URL}/mobil/images/references/domestic/5.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/5.jpg`,
     link: "sapphire-residence",
   },
   {
     title: "Taksim Divan Otel - İstanbul",
-    image: `${API_URL}/mobil/images/references/domestic/6.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/6.jpg`,
     link: "taksim-divan-otel",
   },
   {
     title: "Shangri-La Beşiktaş",
-    image: `${API_URL}/mobil/images/references/domestic/7.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/7.jpg`,
     link: "shangri-la-besiktas",
   },
   {
     title: "Onaltı Dokuz - İstanbul",
-    image: `${API_URL}/mobil/images/references/domestic/8.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/8.jpg`,
     link: "onalti-dokuz",
   },
   {
     title: "Wyndham Grand - İstanbul",
-    image: `${API_URL}/mobil/images/references/domestic/9.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/9.jpg`,
     link: "wyndham-grand",
   },
   {
     title: "Tekfen Residence - İstanbul",
-    image: `${API_URL}/mobil/images/references/domestic/10.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/10.jpg`,
     link: "tekfen-residence",
   },
   {
     title: "The Grand Tarabya - İstanbul",
-    image: `${API_URL}/mobil/images/references/domestic/11.jpg`,
+    image: `http://mobil.alacakaya.com/mobil/images/references/domestic/11.jpg`,
     link: "the-grand-tarabya",
   },
 ];

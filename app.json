@@ -28,7 +28,10 @@
       },
       "package": "com.alacakaya",
       "versionCode": 2,
-      "runtimeVersion": "1.0.0"
+      "runtimeVersion": "1.0.0",
+      "permissions": [
+        "android.permission.INTERNET"
+      ]
     },
     "web": {
       "bundler": "metro",

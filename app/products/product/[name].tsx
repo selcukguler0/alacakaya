@@ -23,7 +23,6 @@ interface Product {
 export default function Product() {
   const galleryRef = useRef(null);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
-  const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
   const local = useLocalSearchParams();
   const [product, setProduct] = useState<Product | undefined>(
@@ -32,7 +31,7 @@ export default function Product() {
 
   useEffect(() => {
     if (local.id) {
-      axios.get(API_URL + "/get-product/" + local.id).then((res) => {
+      axios.get("http://mobil.alacakaya.com/get-product/" + local.id).then((res) => {
         setProduct(res.data);
       });
     }
@@ -46,7 +45,7 @@ export default function Product() {
   }
 
   const images = product.image_paths.map((image) => (
-    `${API_URL}/mobil/images/products/${product.id}/${image}`
+    `http://mobil.alacakaya.com/mobil/images/products/${product.id}/${image}`
   ));
   return (
     <>
@@ -71,7 +70,7 @@ export default function Product() {
                   key={index}
                 >
                   <Image
-                    source={{ uri: `${API_URL}/mobil/images/products/${product.id}/${image}` }}
+                    source={{ uri: `http://mobil.alacakaya.com/mobil/images/products/${product.id}/${image}` }}
                     style={{
                       width: Dimensions.get("window").width / 2 - 15,
                       height: 200,
