@@ -14,7 +14,7 @@ export default [
   },
   {
     title: "SHOP",
-    path: "products/index",
+    path: "shop/index",
     icon: "shopping-cart",
     show: true,
   },

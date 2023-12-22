@@ -9,85 +9,107 @@ import React, { useEffect, useState } from "react";
 import Colors from "../../constants/Colors";
 import { router } from "expo-router";
 import Header from "../../components/Header";
+
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 const references = {
   abroad: [
     {
       title: "Atana Hotel - BAE",
-      image: require("../../assets/images/references/abroad/1.jpg"),
+      image: `${API_URL}/mobil/images/references/abroad/1.jpg`,
+      link: "atana-hotel",
     },
     {
       title: "Kâbe - Mekke, Suudi Arabistan",
-      image: require("../../assets/images/references/abroad/2.jpg"),
+      image: `${API_URL}/mobil/images/references/abroad/2.jpg`,
+      link: "kabe-mekke",
     },
     {
       title: "Hotel Galleria - Jeddah",
-      image: require("../../assets/images/references/abroad/3.jpg"),
+      image: `${API_URL}/mobil/images/references/abroad/3.jpg`,
+      link: "hotel-galleria",
     },
     {
       title: "Intourist Palace Hotel - Gürcistan",
-      image: require("../../assets/images/references/abroad/4.jpg"),
+      image: `${API_URL}/mobil/images/references/abroad/4.jpg`,
+      link: "intourist-palace-hotel",
     },
     {
       title: "Royal Mediterranean Hotel - China",
-      image: require("../../assets/images/references/abroad/5.jpg"),
+      image: `${API_URL}/mobil/images/references/abroad/5.jpg`,
+      link: "royal-mediterranean-hotel",
     },
     {
       title: "Atlantis Hotel Dubai - BAE",
-      image: require("../../assets/images/references/abroad/6.jpg"),
+      image: `${API_URL}/mobil/images/references/abroad/6.jpg`,
+      link: "atlantis-hotel-dubai",
     },
     {
       title: "Pera Palace - İstanbul",
-      image: require("../../assets/images/references/abroad/7.jpg"),
+      image: `${API_URL}/mobil/images/references/abroad/7.jpg`,
+      link: "pera-palace",
     },
     {
       title: "Cratos Hotel - Cyprus",
-      image: require("../../assets/images/references/abroad/8.jpg"),
+      image: `${API_URL}/mobil/images/references/abroad/8.jpg`,
+      link: "cratos-hotel",
     },
   ],
   domestic: [
     {
       title: "Savoy Residence - İstanbul",
-      image: require("../../assets/images/references/domestic/1.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/1.jpg`,
+      link: "savoy-residence",
     },
     {
       title: "The Galata Hotel - İstanbul",
-      image: require("../../assets/images/references/domestic/2.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/2.jpg`,
+      link: "the-galata-hotel",
     },
     {
       title: "Titanic Business - İstanbul",
-      image: require("../../assets/images/references/domestic/3.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/3.jpg`,
+      link: "titanic-business",
     },
     {
       title: "Acıbadem Maslak - İstanbul",
-      image: require("../../assets/images/references/domestic/4.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/4.jpg`,
+      link: "acibadem-maslak",
     },
     {
       title: "Sapphire Residence - İstanbul",
-      image: require("../../assets/images/references/domestic/5.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/5.jpg`,
+      link: "sapphire-residence",
     },
     {
       title: "Taksim Divan Otel - İstanbul",
-      image: require("../../assets/images/references/domestic/6.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/6.jpg`,
+      link: "taksim-divan-otel",
     },
     {
       title: "Shangri-La Beşiktaş",
-      image: require("../../assets/images/references/domestic/7.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/7.jpg`,
+      link: "shangri-la-besiktas",
     },
     {
       title: "Onaltı Dokuz - İstanbul",
-      image: require("../../assets/images/references/domestic/8.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/8.jpg`,
+      link: "onalti-dokuz",
     },
     {
       title: "Wyndham Grand - İstanbul",
-      image: require("../../assets/images/references/domestic/9.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/9.jpg`,
+      link: "wyndham-grand",
     },
     {
       title: "Tekfen Residence - İstanbul",
-      image: require("../../assets/images/references/domestic/10.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/10.jpg`,
+      link: "tekfen-residence",
     },
     {
       title: "The Grand Tarabya - İstanbul",
-      image: require("../../assets/images/references/domestic/11.jpg"),
+      image: `${API_URL}/mobil/images/references/domestic/11.jpg`,
+      link: "the-grand-tarabya",
     },
   ],
 };
@@ -102,7 +124,7 @@ export default function References() {
             onPress={() => router.push("/references/abroad")}
           >
             <ImageBackground
-              source={references.abroad[0].image}
+              source={{uri: references.abroad[0].image}}
               style={styles.filterImg}
               resizeMode="cover"
             >
@@ -114,7 +136,7 @@ export default function References() {
             onPress={() => router.push("/references/domestic")}
           >
             <ImageBackground
-              source={references.domestic[1].image}
+              source={{uri: references.domestic[1].image}}
               style={styles.filterImg}
               resizeMode="cover"
             >

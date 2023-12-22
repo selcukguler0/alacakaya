@@ -12,60 +12,62 @@ import { router } from "expo-router";
 
 import Header from "../../components/Header";
 
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 const references = [
   {
     title: "Savoy Residence - İstanbul",
-    image: require("../../assets/images/references/domestic/1.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/1.jpg`,
     link: "savoy-residence",
   },
   {
     title: "The Galata Hotel - İstanbul",
-    image: require("../../assets/images/references/domestic/2.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/2.jpg`,
     link: "the-galata-hotel",
   },
   {
     title: "Titanic Business - İstanbul",
-    image: require("../../assets/images/references/domestic/3.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/3.jpg`,
     link: "titanic-business",
   },
   {
     title: "Acıbadem Maslak - İstanbul",
-    image: require("../../assets/images/references/domestic/4.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/4.jpg`,
     link: "acibadem-maslak",
   },
   {
     title: "Sapphire Residence - İstanbul",
-    image: require("../../assets/images/references/domestic/5.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/5.jpg`,
     link: "sapphire-residence",
   },
   {
     title: "Taksim Divan Otel - İstanbul",
-    image: require("../../assets/images/references/domestic/6.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/6.jpg`,
     link: "taksim-divan-otel",
   },
   {
     title: "Shangri-La Beşiktaş",
-    image: require("../../assets/images/references/domestic/7.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/7.jpg`,
     link: "shangri-la-besiktas",
   },
   {
     title: "Onaltı Dokuz - İstanbul",
-    image: require("../../assets/images/references/domestic/8.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/8.jpg`,
     link: "onalti-dokuz",
   },
   {
     title: "Wyndham Grand - İstanbul",
-    image: require("../../assets/images/references/domestic/9.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/9.jpg`,
     link: "wyndham-grand",
   },
   {
     title: "Tekfen Residence - İstanbul",
-    image: require("../../assets/images/references/domestic/10.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/10.jpg`,
     link: "tekfen-residence",
   },
   {
     title: "The Grand Tarabya - İstanbul",
-    image: require("../../assets/images/references/domestic/11.jpg"),
+    image: `${API_URL}/mobil/images/references/domestic/11.jpg`,
     link: "the-grand-tarabya",
   },
 ];
@@ -75,36 +77,36 @@ export default function Domestic() {
     <>
       <Header title="DOMESTIC" />
       <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => router.push("/references/")}
-        style={styles.backBtn}
-      >
-        <Text style={{ fontSize: 20, marginRight: 10, color: "#fff" }}>
-          {"<- References"}
-        </Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => router.push("/references/")}
+          style={styles.backBtn}
+        >
+          <Text style={{ fontSize: 20, marginRight: 10, color: "#fff" }}>
+            {"<- References"}
+          </Text>
+        </TouchableOpacity>
 
-      <FlatList
-        data={references}
-        numColumns={2}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() =>
-              router.replace({
-                pathname: `/references/reference/[name]` as `http${string}`,
-                params: { name: item.link },
-              })
-            }
-            style={styles.item}
-          >
-            <Image style={styles.itemImage} source={item.image} />
-            <Text style={styles.itemText}>{item.title}</Text>
-          </TouchableOpacity>
-        )}
-        style={{ width: "100%", marginTop: 20 }}
-        keyExtractor={(item) => item.title}
-      />
-    </View>
+        <FlatList
+          data={references}
+          numColumns={2}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() =>
+                router.replace({
+                  pathname: `/references/reference/[name]` as `http${string}`,
+                  params: { name: item.link },
+                })
+              }
+              style={styles.item}
+            >
+              <Image style={styles.itemImage} source={{ uri: item.image }} />
+              <Text style={styles.itemText}>{item.title}</Text>
+            </TouchableOpacity>
+          )}
+          style={{ width: "100%", marginTop: 20 }}
+          keyExtractor={(item) => item.title}
+        />
+      </View>
     </>
   );
 }

@@ -16,14 +16,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.alacakaya"
+      "package": "com.alacakaya",
+      "versionCode": 2,
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "bundler": "metro",
@@ -43,6 +48,9 @@
       "eas": {
         "projectId": "4afd1161-2d90-44c7-a25c-3331dd0f70c4"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/4afd1161-2d90-44c7-a25c-3331dd0f70c4"
     }
   }
 }

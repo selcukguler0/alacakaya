@@ -14,6 +14,8 @@ import GalleryContainer from "../../../components/Gallery";
 
 import Header from "../../../components/Header";
 
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 const quarries = [
   {
     title: "Karaman Beige Quarry",
@@ -24,18 +26,18 @@ const quarries = [
       "Our light-colored beige hearth attracts attention with its homogeneous feature in terms of its unique color and eye-catching natural pattern. It is a product sought after in various projects with its texture and good polish retention feature. Some of the blocks produced are evaluated in our factory for processing, and some are exported to foreign countries. It is sent to Mersin and Izmir ports.",
     ],
     images: [
-      require("../../../assets/images/quarries/karaman/1.jpg"),
-      require("../../../assets/images/quarries/karaman/2.jpg"),
-      require("../../../assets/images/quarries/karaman/3.jpg"),
-      require("../../../assets/images/quarries/karaman/4.jpg"),
-      require("../../../assets/images/quarries/karaman/5.jpg"),
-      require("../../../assets/images/quarries/karaman/6.jpg"),
-      require("../../../assets/images/quarries/karaman/8.jpg"),
-      require("../../../assets/images/quarries/karaman/9.jpg"),
-      require("../../../assets/images/quarries/karaman/10.jpg"),
-      require("../../../assets/images/quarries/karaman/11.jpg"),
-      require("../../../assets/images/quarries/karaman/12.jpg"),
-      require("../../../assets/images/quarries/karaman/13.jpg"),
+      `${API_URL}/mobil/images/quarries/karaman/1.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/2.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/3.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/4.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/5.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/6.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/8.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/9.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/10.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/11.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/12.jpg`,
+      `${API_URL}/mobil/images/quarries/karaman/13.jpg`,
     ],
   },
   {
@@ -47,13 +49,13 @@ const quarries = [
       "With its indisputable beauty and unique colour, it has entered the world literature and established itself. Our marble, whose reserves are found only in our quarry, is preferred in important places and various areas with its durable structure as well as its aesthetic appearance. It is thought that the world-famous Elâzığ Cherry (Rosso Levanto) should gain an identity as a semi-precious natural stone. While some of the blocks produced are utilised in our factory for processing, some of them are exported to the foreign market as raw material.",
     ],
     images: [
-      require("../../../assets/images/quarries/elazig/1.jpg"),
-      require("../../../assets/images/quarries/elazig/2.jpg"),
-      require("../../../assets/images/quarries/elazig/3.jpg"),
-      require("../../../assets/images/quarries/elazig/4.jpg"),
-      require("../../../assets/images/quarries/elazig/5.jpg"),
-      require("../../../assets/images/quarries/elazig/6.jpg"),
-      require("../../../assets/images/quarries/elazig/8.jpg"),
+      `${API_URL}/mobil/images/quarries/elazig/1.jpg`,
+      `${API_URL}/mobil/images/quarries/elazig/2.jpg`,
+      `${API_URL}/mobil/images/quarries/elazig/3.jpg`,
+      `${API_URL}/mobil/images/quarries/elazig/4.jpg`,
+      `${API_URL}/mobil/images/quarries/elazig/5.jpg`,
+      `${API_URL}/mobil/images/quarries/elazig/6.jpg`,
+      `${API_URL}/mobil/images/quarries/elazig/8.jpg`,
     ],
   },
   {
@@ -65,13 +67,13 @@ const quarries = [
       "It is among the most sought-after marbles with its natural structure and noble colour. In addition to these features, it polishes very well. Some of the blocks produced are utilised in our factory for processing and some of them are exported to the world through Mersin Port.",
     ],
     images: [
-      require("../../../assets/images/quarries/black-pearl/1.jpg"),
-      require("../../../assets/images/quarries/black-pearl/2.jpg"),
-      require("../../../assets/images/quarries/black-pearl/3.jpg"),
-      require("../../../assets/images/quarries/black-pearl/4.jpg"),
-      require("../../../assets/images/quarries/black-pearl/5.jpg"),
-      require("../../../assets/images/quarries/black-pearl/6.jpg"),
-      require("../../../assets/images/quarries/black-pearl/7.jpg"),
+      `${API_URL}/mobil/images/quarries/black-pearl/1.jpg`,
+      `${API_URL}/mobil/images/quarries/black-pearl/2.jpg`,
+      `${API_URL}/mobil/images/quarries/black-pearl/3.jpg`,
+      `${API_URL}/mobil/images/quarries/black-pearl/4.jpg`,
+      `${API_URL}/mobil/images/quarries/black-pearl/5.jpg`,
+      `${API_URL}/mobil/images/quarries/black-pearl/6.jpg`,
+      `${API_URL}/mobil/images/quarries/black-pearl/7.jpg`,
     ],
   },
   {
@@ -83,12 +85,12 @@ const quarries = [
       "It offers a perfect appearance with its texture and pattern structure. It has a wide usage area thanks to its unique colour tone and properties. Some of the blocks produced are evaluated in our factory for processing, while the other part is sent to our export department to present to the world.",
     ],
     images: [
-      require("../../../assets/images/quarries/petrol-green/1.jpg"),
-      require("../../../assets/images/quarries/petrol-green/2.jpg"),
-      require("../../../assets/images/quarries/petrol-green/3.jpg"),
-      require("../../../assets/images/quarries/petrol-green/4.jpg"),
-      require("../../../assets/images/quarries/petrol-green/5.jpg"),
-      require("../../../assets/images/quarries/petrol-green/6.jpg"),
+      `${API_URL}/mobil/images/quarries/petrol-green/1.jpg`,
+      `${API_URL}/mobil/images/quarries/petrol-green/2.jpg`,
+      `${API_URL}/mobil/images/quarries/petrol-green/3.jpg`,
+      `${API_URL}/mobil/images/quarries/petrol-green/4.jpg`,
+      `${API_URL}/mobil/images/quarries/petrol-green/5.jpg`,
+      `${API_URL}/mobil/images/quarries/petrol-green/6.jpg`,
     ],
   },
   {
@@ -100,13 +102,13 @@ const quarries = [
       "In our quarry, marbles known as Aliento, Ciello and Bella Stones are produced. Each of these marbles has very good polish holding properties. In addition, they are special stones that have no precedent with their pattern structure and texture. Bella Stones, also known as Afyon Sugar, attracts attention with its natural pattern resembling the sky. Like all our other stones, these stones stand out with their resistance to harsh conditions, their aesthetic and elegant appearance that appeals to different tastes, as well as their hygienic structure that prevents the formation of bacteria. Some of the marble blocks produced in our quarry are processed in our factory to be used in various fields and the other part is exported to the world from Izmir Port.",
     ],
     images: [
-      require("../../../assets/images/quarries/kutahya/1.jpg"),
-      require("../../../assets/images/quarries/kutahya/2.jpg"),
-      require("../../../assets/images/quarries/kutahya/3.jpg"),
-      require("../../../assets/images/quarries/kutahya/4.jpg"),
-      require("../../../assets/images/quarries/kutahya/5.jpg"),
-      require("../../../assets/images/quarries/kutahya/6.jpg"),
-      require("../../../assets/images/quarries/kutahya/7.jpg"),
+      `${API_URL}/mobil/images/quarries/kutahya/1.jpg`,
+      `${API_URL}/mobil/images/quarries/kutahya/2.jpg`,
+      `${API_URL}/mobil/images/quarries/kutahya/3.jpg`,
+      `${API_URL}/mobil/images/quarries/kutahya/4.jpg`,
+      `${API_URL}/mobil/images/quarries/kutahya/5.jpg`,
+      `${API_URL}/mobil/images/quarries/kutahya/6.jpg`,
+      `${API_URL}/mobil/images/quarries/kutahya/7.jpg`,
     ],
   },
 ];
@@ -171,7 +173,7 @@ export default function Quarry() {
                 key={index}
               >
                 <Image
-                  source={image}
+                  source={{ uri: image }}
                   style={{
                     width: Dimensions.get("window").width / 2 - 15,
                     height: 200,

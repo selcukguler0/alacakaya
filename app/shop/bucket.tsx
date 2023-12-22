@@ -1,146 +1,165 @@
-import { router } from "expo-router";
+import NumericInput from "react-native-numeric-input";
+import { useIsFocused } from "@react-navigation/native";
 import {
   Text,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
+  View,
+  ActivityIndicator,
 } from "react-native";
-
+import { FontAwesome } from "@expo/vector-icons";
 import Header from "../../components/Header";
-import { useEffect } from "react";
-import { getData } from "../../utils/data-storage";
+import { useEffect, useState } from "react";
+import { BucketItem, Product } from "../../types/types";
+import { Image } from "expo-image";
+import { addItem, getItems, removeItem } from "../../utils/bucket-management";
 
-const products = [
-  {
-    title: "Elazig Cherry",
-    image: require("../../assets/images/products/Elazig-Visne.jpg"),
-    link: "elazig-cherry",
-  },
-  {
-    title: "Karaman Cream",
-    image: require("../../assets/images/products/Krem-Karaman.jpg"),
-    link: "karaman-cream",
-  },
-  {
-    title: "Black Pearl",
-    image: require("../../assets/images/products/Siyah-İnci.jpg"),
-    link: "black-pearl",
-  },
-  {
-    title: "Petrol Green",
-    image: require("../../assets/images/products/Petrol-Yesili.jpg"),
-    link: "petrol-green",
-  },
-  {
-    title: "Premium Gray",
-    image: require("../../assets/images/products/Premium-Gri-Mermer.jpg"),
-    link: "premium-gray",
-  },
-  {
-    title: "Pearl Grey",
-    image: require("../../assets/images/products/inci-Gri-Mermer.jpg"),
-    link: "pearl-grey",
-  },
-  {
-    title: "Milan Gray Cross",
-    image: require("../../assets/images/products/Milan-Grey-Marble-Cross.jpg"),
-    link: "milan-gray-cross",
-  },
-  {
-    title: "Milan Gray Vein",
-    image: require("../../assets/images/products/Milan-Grey-wein-Cut.jpg"),
-    link: "milan-gray-vein",
-  },
-  {
-    title: "Cielo",
-    image: require("../../assets/images/products/Cielo-Marble-New.jpg"),
-    link: "cielo",
-  },
-  {
-    title: "Midnight",
-    image: require("../../assets/images/products/Midnight.jpg"),
-    link: "midnight",
-  },
-  {
-    title: "Black Jack",
-    image: require("../../assets/images/products/Black-Jack-Mermer.jpg"),
-    link: "black-jack",
-  },
-  {
-    title: "Aliento",
-    image: require("../../assets/images/products/Aliento.jpg"),
-    link: "aliento",
-  },
-  {
-    title: "Bella",
-    image: require("../../assets/images/products/Bella-Mermer.jpg"),
-    link: "bella",
-  },
-];
+export default function Bucket() {
+  const isFocused = useIsFocused();
 
-export default function Shop() {
+  const [bucket, setBucket] = useState<BucketItem[] | "loading">("loading");
+  const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
   useEffect(() => {
-    getData("bucket").then((res) => {
-      console.log(res);
-    });
-  }, []);
+    const updateBucket = async () => {
+      setBucket("loading");
+      const items = await getItems();
+      setBucket(items);
+    };
+
+    updateBucket();
+
+    return () => {
+      setBucket("loading");
+    };
+  }, [isFocused]);
+
+  const bucketHandler = (id: string, value: number) => {
+    if (!bucket || bucket === "loading") {
+      return;
+    }
+    setBucket("loading");
+    const item = bucket.find((item) => item.id === id);
+    if (item) {
+      item.count = value;
+    }
+    addItem(id, value);
+    setBucket([...bucket]);
+  };
+  const removeItemHandler = (id: string) => {
+    if (!bucket || bucket === "loading") {
+      return;
+    }
+    setBucket("loading");
+    const item = bucket.find((item) => item.id === id);
+    if (item) {
+      bucket.splice(bucket.indexOf(item), 1);
+    }
+    removeItem(id);
+    setBucket([...bucket]);
+  };
+  console.log("bucket", bucket);
+
   return (
     <>
-      <Header title="SHOP" />
-      <ScrollView style={styles.container}>
-        {products.map((product) => (
-          <TouchableOpacity
-            onPress={() =>
-              router.replace({
-                pathname: "/shop/product/[name]" as `http${string}`,
-                params: { name: product.link },
-              })
-            }
-            key={product.title}
-            style={styles.item}
-          >
-            <ImageBackground
-              source={product.image}
-              style={styles.item}
-              resizeMode="cover"
-            >
-              <Text style={styles.title}>{product.title}</Text>
-            </ImageBackground>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      <Header title="BUCKET" />
+      {typeof bucket === "string" && bucket === "loading" ? (
+        <View style={styles.loading}>
+          <ActivityIndicator size="large" />
+        </View>
+      ) : !bucket || !bucket.length ? (
+        <View style={styles.emptyContainer}>
+          <FontAwesome name="shopping-cart" size={54} color="black" />
+          <Text style={{ fontSize: 23, fontWeight: "500" }}>
+            Bucket is empty!
+          </Text>
+        </View>
+      ) : (
+        <ScrollView style={styles.container}>
+          {bucket.map((product) => (
+            <View key={product.id} style={styles.item}>
+              <Image
+                source={`${API_URL}/mobil/images/products/${product.id}/${product.img}`}
+                style={styles.image}
+                contentFit="contain"
+              />
+              <View style={styles.textWrapper}>
+                <Text style={styles.title}>{product.name}</Text>
+                <View style={styles.inputContainer}>
+                  <NumericInput
+                    minValue={1}
+                    initValue={product.count}
+                    value={product.count}
+                    leftButtonBackgroundColor={"transparent"}
+                    rightButtonBackgroundColor={"transparent"}
+                    iconSize={10}
+                    totalWidth={100}
+                    containerStyle={{ borderWidth: 2, marginTop: 10 }}
+                    onChange={(value) => bucketHandler(product.id, value)}
+                  />
+                  <TouchableOpacity
+                    onPress={() => {
+                      removeItemHandler(product.id);
+                    }}
+                  >
+                    <FontAwesome name="trash" size={24} color="#ad0303" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          ))}
+        </ScrollView>
+      )}
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#0006",
+  },
   container: {
     flex: 1,
+    paddingHorizontal: 10,
   },
   item: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    height: 150,
     marginVertical: 8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
+    borderBottomWidth: 1,
+    borderColor: "#000",
+    paddingHorizontal: 30,
+    paddingVertical: 5,
+    gap: 20,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: 100,
+    height: 100,
+    resizeMode: "contain",
+    borderRadius: 10,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 10,
+  },
+  textWrapper: {
+    flex: 1,
+    marginLeft: 10,
   },
   title: {
-    fontSize: 25,
-    position: "absolute",
-    bottom: 3,
-    right: 3,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    color: "#fff",
+    fontSize: 17,
+    color: "#000",
   },
 });

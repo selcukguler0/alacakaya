@@ -12,45 +12,47 @@ import { router } from "expo-router";
 
 import Header from "../../components/Header";
 
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 const references = [
   {
     title: "Atana Hotel - BAE",
-    image: require("../../assets/images/references/abroad/1.jpg"),
+    image: `${API_URL}/mobil/images/references/abroad/1.jpg`,
     link: "atana-hotel",
   },
   {
     title: "Kâbe - Mekke, Suudi Arabistan",
-    image: require("../../assets/images/references/abroad/2.jpg"),
+    image: `${API_URL}/mobil/images/references/abroad/2.jpg`,
     link: "kabe-mekke",
   },
   {
     title: "Hotel Galleria - Jeddah",
-    image: require("../../assets/images/references/abroad/3.jpg"),
+    image: `${API_URL}/mobil/images/references/abroad/3.jpg`,
     link: "hotel-galleria",
   },
   {
     title: "Intourist Palace Hotel - Gürcistan",
-    image: require("../../assets/images/references/abroad/4.jpg"),
+    image: `${API_URL}/mobil/images/references/abroad/4.jpg`,
     link: "intourist-palace-hotel",
   },
   {
     title: "Royal Mediterranean Hotel - China",
-    image: require("../../assets/images/references/abroad/5.jpg"),
+    image: `${API_URL}/mobil/images/references/abroad/5.jpg`,
     link: "royal-mediterranean-hotel",
   },
   {
     title: "Atlantis Hotel Dubai - BAE",
-    image: require("../../assets/images/references/abroad/6.jpg"),
+    image: `${API_URL}/mobil/images/references/abroad/6.jpg`,
     link: "atlantis-hotel-dubai",
   },
   {
     title: "Pera Palace - İstanbul",
-    image: require("../../assets/images/references/abroad/7.jpg"),
+    image: `${API_URL}/mobil/images/references/abroad/7.jpg`,
     link: "pera-palace",
   },
   {
     title: "Cratos Hotel - Cyprus",
-    image: require("../../assets/images/references/abroad/8.jpg"),
+    image: `${API_URL}/mobil/images/references/abroad/8.jpg`,
     link: "cratos-hotel",
   },
 ];
@@ -60,32 +62,38 @@ export default function Abroad() {
     <>
       <Header title="ABROAD" />
       <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => router.push("/references/")}
-        style={styles.backBtn}
-      >
-        <Text style={{ fontSize: 20, marginRight: 10, color: "#fff" }}>
-          {"<- References"}
-        </Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => router.push("/references/")}
+          style={styles.backBtn}
+        >
+          <Text style={{ fontSize: 20, marginRight: 10, color: "#fff" }}>
+            {"<- References"}
+          </Text>
+        </TouchableOpacity>
 
-      <FlatList
-        data={references}
-        numColumns={2}
-        renderItem={({ item }) => (
-          <TouchableOpacity onPress={()=>router.replace({
-            pathname: "/references/reference/[name]" as `http${string}`,
-            params: {
-              name: item.link,
-             }})} style={styles.item}>
-            <Image style={styles.itemImage} source={item.image} />
-            <Text style={styles.itemText}>{item.title}</Text>
-          </TouchableOpacity>
-        )}
-        style={{ width: "100%", marginTop: 20 }}
-        keyExtractor={(item) => item.title}
-      />
-    </View>
+        <FlatList
+          data={references}
+          numColumns={2}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() =>
+                router.replace({
+                  pathname: "/references/reference/[name]" as `http${string}`,
+                  params: {
+                    name: item.link,
+                  },
+                })
+              }
+              style={styles.item}
+            >
+              <Image style={styles.itemImage} source={{ uri: item.image }} />
+              <Text style={styles.itemText}>{item.title}</Text>
+            </TouchableOpacity>
+          )}
+          style={{ width: "100%", marginTop: 20 }}
+          keyExtractor={(item) => item.title}
+        />
+      </View>
     </>
   );
 }

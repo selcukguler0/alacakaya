@@ -10,7 +10,6 @@ import {
 import { DrawerActions } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "../constants/Colors";
-import { DrawerHeaderProps } from "@react-navigation/drawer";
 
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -40,7 +39,7 @@ const Header = ({ title }: { title: string }) => {
         )}
         <Text style={styles.title}>{title}</Text>
       </View>
-      <Pressable onPress={() => router.push("/shop/")}>
+      <Pressable onPress={() => router.push("/shop/bucket")}>
         <FontAwesome name="shopping-cart" size={24} color="white" />
       </Pressable>
     </View>
@@ -66,6 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
+    maxWidth: 200,
   },
   logo: {
     width: 100,

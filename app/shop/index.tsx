@@ -6,103 +6,61 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-
 import Header from "../../components/Header";
-
-const products = [
-  {
-    title: "Elazig Cherry",
-    image: require("../../assets/images/products/Elazig-Visne.jpg"),
-    link: "elazig-cherry",
-  },
-  {
-    title: "Karaman Cream",
-    image: require("../../assets/images/products/Krem-Karaman.jpg"),
-    link: "karaman-cream",
-  },
-  {
-    title: "Black Pearl",
-    image: require("../../assets/images/products/Siyah-İnci.jpg"),
-    link: "black-pearl"
-  },
-  {
-    title: "Petrol Green",
-    image: require("../../assets/images/products/Petrol-Yesili.jpg"),
-    link: "petrol-green"
-  },
-  {
-    title: "Premium Gray",
-    image: require("../../assets/images/products/Premium-Gri-Mermer.jpg"),
-    link: "premium-gray"
-  },
-  {
-    title: "Pearl Grey",
-    image: require("../../assets/images/products/inci-Gri-Mermer.jpg"),
-    link: "pearl-grey"
-  },
-  {
-    title: "Milan Gray Cross",
-    image: require("../../assets/images/products/Milan-Grey-Marble-Cross.jpg"),
-    link: "milan-gray-cross"
-  },
-  {
-    title: "Milan Gray Vein",
-    image: require("../../assets/images/products/Milan-Grey-wein-Cut.jpg"),
-    link: "milan-gray-vein"
-  },
-  {
-    title: "Cielo",
-    image: require("../../assets/images/products/Cielo-Marble-New.jpg"),
-    link: "cielo"
-  },
-  {
-    title: "Midnight",
-    image: require("../../assets/images/products/Midnight.jpg"),
-    link: "midnight"
-  },
-  {
-    title: "Black Jack",
-    image: require("../../assets/images/products/Black-Jack-Mermer.jpg"),
-    link: "black-jack"
-  },
-  {
-    title: "Aliento",
-    image: require("../../assets/images/products/Aliento.jpg"),
-    link: "aliento"
-  },
-  {
-    title: "Bella",
-    image: require("../../assets/images/products/Bella-Mermer.jpg"),
-    link: "bella"
-  },
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { getData, storeData } from "../../utils/data-storage";
+interface Product {
+  id: string;
+  name: string;
+  image_paths: string[];
+}
 
 export default function Shop() {
+  const [products, setProducts] = useState<[] | Product[]>([]);
+  const API_URL = process.env.EXPO_PUBLIC_API_URL;
+  useEffect(() => {
+    axios.get(API_URL + "/get-all-products").then((res) => {
+      setProducts(res.data);
+
+      //kayıtlı veri ile gelen veri aynı değilse kaydet
+      getData("products").then((stored) => {
+        if (stored !== res.data) {
+          storeData("products", res.data);
+        }
+      });
+    });
+  }, []);
+
+  if (!products.length) {
+    return null;
+  }
+
   return (
     <>
       <Header title="SHOP" />
       <ScrollView style={styles.container}>
-      {products.map((product) => (
-        <TouchableOpacity
-          onPress={() =>
-            router.replace({
-              pathname: "/shop/product/[name]" as `http${string}`,
-              params: { name: product.link },
-            })
-          }
-          key={product.title}
-          style={styles.item}
-        >
-          <ImageBackground
-            source={product.image}
+        {products.map((product) => (
+          <TouchableOpacity
+            onPress={() =>
+              router.replace({
+                pathname: "/shop/product/[name]" as `http${string}`,
+                params: { id: product.id || "karaman-cream" },
+              })
+            }
+            key={product.id}
             style={styles.item}
-            resizeMode="cover"
           >
-            <Text style={styles.title}>{product.title}</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+            <ImageBackground
+              source={{uri: `${API_URL}/mobil/images/products/${product.id}/${product.image_paths[0]}`}}
+              style={styles.item}
+              resizeMode="cover"
+            >
+              <Text style={styles.title}>{product.name}</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     </>
   );
 }

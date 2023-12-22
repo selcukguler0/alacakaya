@@ -9,8 +9,6 @@ import {
 } from "react-native";
 
 import { router } from "expo-router";
-
-import { useEffect } from "react";
 import Header from "../components/Header";
 
 const productsIcon = require("../assets/icons/products.png");
@@ -29,7 +27,7 @@ const menu: MenuItems[] = [
   {
     title: "SHOP",
     icon: shopIcon,
-    href: "/products",
+    href: "/shop",
   },
   {
     title: "CORPORATE",

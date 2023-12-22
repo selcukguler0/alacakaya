@@ -64,7 +64,7 @@ export default function GalleryContainer({
               }}
             >
               <Image
-                source={images[index]}
+                source={{uri: images[index]}}
                 style={{
                   width: 300,
                   height: 300,

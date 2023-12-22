@@ -24,10 +24,6 @@ const paragraph = [
 ];
 
 export default function History() {
-  const { setTitle } = useHeader();
-  useEffect(() => {
-    setTitle("HISTORY");
-  }, []);
   return (
     <>
     <Header title="HISTORY" />
