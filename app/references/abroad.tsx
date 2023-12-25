@@ -16,42 +16,42 @@ import Header from "../../components/Header";
 const references = [
   {
     title: "Atana Hotel - BAE",
-    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/1.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/references/abroad/1.jpg`,
     link: "atana-hotel",
   },
   {
     title: "Kâbe - Mekke, Suudi Arabistan",
-    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/2.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/references/abroad/2.jpg`,
     link: "kabe-mekke",
   },
   {
     title: "Hotel Galleria - Jeddah",
-    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/3.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/references/abroad/3.jpg`,
     link: "hotel-galleria",
   },
   {
     title: "Intourist Palace Hotel - Gürcistan",
-    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/4.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/references/abroad/4.jpg`,
     link: "intourist-palace-hotel",
   },
   {
     title: "Royal Mediterranean Hotel - China",
-    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/5.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/references/abroad/5.jpg`,
     link: "royal-mediterranean-hotel",
   },
   {
     title: "Atlantis Hotel Dubai - BAE",
-    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/6.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/references/abroad/6.jpg`,
     link: "atlantis-hotel-dubai",
   },
   {
     title: "Pera Palace - İstanbul",
-    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/7.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/references/abroad/7.jpg`,
     link: "pera-palace",
   },
   {
     title: "Cratos Hotel - Cyprus",
-    image: `http://mobil.alacakaya.com/mobil/images/references/abroad/8.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/references/abroad/8.jpg`,
     link: "cratos-hotel",
   },
 ];

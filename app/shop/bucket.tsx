@@ -80,7 +80,7 @@ export default function Bucket() {
           {bucket.map((product) => (
             <View key={product.id} style={styles.item}>
               <Image
-                source={`http://mobil.alacakaya.com/mobil/images/products/${product.id}/${product.img}`}
+                source={`https://mobil.alacakaya.com/mobil/images/products/${product.id}/${product.img}`}
                 style={styles.image}
                 contentFit="contain"
               />

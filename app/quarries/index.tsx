@@ -17,27 +17,27 @@ const links = [
   {
     title: "Karaman Beige Quarry",
     link: "karaman-beige-quarry",
-    image: `http://mobil.alacakaya.com/mobil/images/quarries/1.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/quarries/1.jpg`,
   },
   {
     title: "Elazığ Cherry Quarry",
     link: "elazig-cherry-quarry",
-    image: `http://mobil.alacakaya.com/mobil/images/quarries/2.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/quarries/2.jpg`,
   },
   {
     title: "Black Pearl Quarry",
     link: "black-pearl-quarry",
-    image: `http://mobil.alacakaya.com/mobil/images/quarries/3.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/quarries/3.jpg`,
   },
   {
     title: "Petrol Green Quarry",
     link: "petrol-green-quarry",
-    image: `http://mobil.alacakaya.com/mobil/images/quarries/4.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/quarries/4.jpg`,
   },
   {
     title: "Kütahya Quarry",
     link: "kutahya-quarry",
-    image: `http://mobil.alacakaya.com/mobil/images/quarries/5.jpg`,
+    image: `https://mobil.alacakaya.com/mobil/images/quarries/5.jpg`,
   },
 ];
 

@@ -60,7 +60,7 @@ export default function SignUp() {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: `http://mobil.alacakaya.com/signup`,
+      url: `https://mobil.alacakaya.com/signup`,
       headers: {
         "Content-Type": "multipart/form-data",
       },

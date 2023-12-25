@@ -21,7 +21,7 @@ export default function Products() {
     req();
   }, []);
   const req = async () => {
-    const res = await fetch("http://mobil.alacakaya.com/get-all-products");
+    const res = await fetch("https://mobil.alacakaya.com/get-all-products");
     const data = await res.json();
     setProducts(data);
     getData("products").then((stored) => {
@@ -49,7 +49,7 @@ export default function Products() {
             >
               <ImageBackground
                 source={{
-                  uri: `http://mobil.alacakaya.com/mobil/images/products/${product.id}/${product.image_paths[0]}`,
+                  uri: `https://mobil.alacakaya.com/mobil/images/products/${product.id}/${product.image_paths[0]}`,
                 }}
                 style={styles.item}
                 resizeMode="cover"

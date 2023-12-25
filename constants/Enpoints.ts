@@ -1,1 +1,1 @@
-export const API_URL = 'http://mobil.alacakaya.com';
+export const API_URL = 'https://mobil.alacakaya.com';

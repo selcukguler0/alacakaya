@@ -35,7 +35,7 @@ export default function SignIn() {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: `http://mobil.alacakaya.com/signin`,
+      url: `https://mobil.alacakaya.com/signin`,
       headers: {
         "Content-Type": "multipart/form-data",
       },
