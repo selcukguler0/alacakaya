@@ -15,9 +15,12 @@ import { useEffect, useState } from "react";
 import { BucketItem, Product } from "../../types/types";
 import { Image } from "expo-image";
 import { addItem, getItems, removeItem } from "../../utils/bucket-management";
+import { useAuth } from "../../context/AuthContext";
+import { Toast, showToast } from "../../utils/toast";
 
 export default function Bucket() {
   const isFocused = useIsFocused();
+  const { user } = useAuth();
 
   const [bucket, setBucket] = useState<BucketItem[] | "loading">("loading");
 
@@ -59,11 +62,18 @@ export default function Bucket() {
     removeItem(id);
     setBucket([...bucket]);
   };
-  console.log("bucket", bucket);
+  const reserveProductsHandler = () => {
+    if (!user) {
+      showToast("error", "You must be logged in to reserve products!");
+      return;
+    }
+    
+  };
 
   return (
     <>
       <Header title="BUCKET" />
+      <Toast />
       {typeof bucket === "string" && bucket === "loading" ? (
         <View style={styles.loading}>
           <ActivityIndicator size="large" />
@@ -109,6 +119,20 @@ export default function Bucket() {
               </View>
             </View>
           ))}
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#000",
+              paddingVertical: 10,
+              borderRadius: 10,
+              alignItems: "center",
+              marginTop: 20,
+            }}
+            onPress={reserveProductsHandler}
+          >
+            <Text style={{ color: "#fff", fontSize: 17 }}>
+              Reserve Product(s)
+            </Text>
+          </TouchableOpacity>
         </ScrollView>
       )}
     </>

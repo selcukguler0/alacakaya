@@ -18,22 +18,11 @@ export default [
     icon: "shopping-cart",
     show: true,
   },
-  //references
   {
     title: "REFERENCES",
     path: "references/index",
     icon: "book",
     show: true,
-  },
-  {
-    title: "DOMESTIC",
-    path: "references/domestic",
-    show: false,
-  },
-  {
-    title: "ABROAD",
-    path: "references/abroad",
-    show: false,
   },
   {
     title: "CORPORATE",
@@ -42,29 +31,15 @@ export default [
     show: true,
   },
   {
-    title: "ABOUT US",
-    path: "corporate/about-us",
-  },
-  {
-    title: "HISTORY",
-    path: "corporate/history",
-  },
-  {
-    title: "QUALITY POLICY",
-    path: "corporate/quality-policy",
-  },
-  {
-    title: "ENVIRONMENTAL POLICY",
-    path: "corporate/environmental-policy",
-  },
-  {
-    title: "DEALERS",
-    path: "corporate/dealers",
-  },
-  {
     title: "QUARRIES",
     path: "quarries/index",
     icon: "building-o",
+    show: true,
+  },
+  {
+    title: "CONTACT",
+    path: "contact",
+    icon: "phone",
     show: true,
   },
   //user
@@ -78,12 +53,6 @@ export default [
     title: "SIGN UP",
     path: "user/signup",
     icon: "user",
-    show: false,
-  },
-  //quarries
-  {
-    title: "",
-    path: "quarries/quarry/[name]",
     show: false,
   },
 ];

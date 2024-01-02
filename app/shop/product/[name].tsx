@@ -16,6 +16,7 @@ import Header from "../../../components/Header";
 import axios from "axios";
 import Colors from "../../../constants/Colors";
 import { addItem } from "../../../utils/bucket-management";
+import Countdown from "../../../components/Countdown";
 
 interface Product {
   id: string;
@@ -32,9 +33,11 @@ export default function Product() {
 
   useEffect(() => {
     if (local.id) {
-      axios.get("https://mobil.alacakaya.com/get-product/" + local.id).then((res) => {
-        setProduct(res.data);
-      });
+      axios
+        .get("https://mobil.alacakaya.com/get-product/" + local.id)
+        .then((res) => {
+          setProduct(res.data);
+        });
     }
     return () => {
       setProduct(undefined);
@@ -51,7 +54,8 @@ export default function Product() {
   };
 
   const images = product.image_paths.map(
-    (image) => `https://mobil.alacakaya.com/mobil/images/products/${product.id}/${image}`
+    (image) =>
+      `https://mobil.alacakaya.com/mobil/images/products/${product.id}/${image}`
   );
 
   return (
@@ -67,10 +71,11 @@ export default function Product() {
           <Link href="/shop/" style={styles.backBtn}>
             Back to Shop
           </Link>
+          <Countdown timeInMilliseconds={6006660} />
           <View style={styles.wrapper}>
             {/* photos */}
             <View style={styles.imagesContainer}>
-              {product.image_paths.map((image, index) => (
+              {product.image_paths && product.image_paths.map((image, index) => (
                 <TouchableWithoutFeedback
                   onPress={() => {
                     setGalleryIndex(index);

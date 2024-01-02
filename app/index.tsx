@@ -16,6 +16,8 @@ const shopIcon = require("../assets/icons/shop.png");
 const corporateIcon = require("../assets/icons/corporate.png");
 const referancesIcon = require("../assets/icons/referances.png");
 const quarriesIcon = require("../assets/icons/quarries.png");
+const contactIcon = require("../assets/icons/phone-call.png");
+
 // const factoryIcon = require("../assets/icons/factory.png");
 
 const menu: MenuItems[] = [
@@ -48,6 +50,11 @@ const menu: MenuItems[] = [
     title: "QUARRIES",
     icon: quarriesIcon,
     href: "/quarries",
+  },
+  {
+    title: "CONTACT",
+    icon: contactIcon,
+    href: "/contact",
   },
 ];
 

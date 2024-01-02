@@ -13,7 +13,8 @@ import { Toast, showToast, toastConfig } from "../../utils/toast";
 import axios from "axios";
 import FormData from "form-data";
 
-import { Header } from "react-native/Libraries/NewAppScreen";
+import PhoneInput, { ICountry } from "react-native-international-phone-number";
+import Header from "../../components/Header";
 
 export default function SignUp() {
   const [form, setForm] = useState({
@@ -22,6 +23,7 @@ export default function SignUp() {
     passwordConfirm: "",
     name_surname: "",
     phone: "",
+    countryCode: {callingCode: "+90", cca2: "TR", flag: "🇹🇷"} as ICountry,
     country: "",
     city: "",
     companyName: "",
@@ -52,7 +54,7 @@ export default function SignUp() {
     formdata.append("password", form.password);
     formdata.append("passwordConfirm", form.passwordConfirm);
     formdata.append("name_surname", form.name_surname);
-    formdata.append("phone", form.phone);
+    formdata.append("phone", `${form.countryCode.callingCode} ${form.phone}`);
     formdata.append("country", form.country);
     formdata.append("city", form.city);
     formdata.append("companyName", form.companyName);
@@ -77,6 +79,7 @@ export default function SignUp() {
         passwordConfirm: "",
         name_surname: "",
         phone: "",
+        countryCode: {callingCode: "+90", cca2: "TR", flag: "🇹🇷"} as ICountry,
         country: "",
         city: "",
         companyName: "",
@@ -88,8 +91,8 @@ export default function SignUp() {
 
   return (
     <>
-      <Toast config={toastConfig} />
       <Header title="SIGN UP" />
+      <Toast config={toastConfig} />
 
       <ScrollView
         contentContainerStyle={{
@@ -106,11 +109,27 @@ export default function SignUp() {
           onChangeText={(text) => setForm({ ...form, name_surname: text })}
           value={form.name_surname}
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Phone"
-          onChangeText={(text) => setForm({ ...form, phone: text })}
-          value={form.phone}
+        <PhoneInput
+          phoneInputStyles={{
+            container: { width: "90%", margin: 12, borderWidth: 1, borderColor: "#000", borderRadius: 10, backgroundColor: "#fff5" },
+            input: {color: "#000" },
+          }}
+          placeholderTextColor="#0007"
+          defaultCountry="TR"
+          value={form?.phone}
+          onChangePhoneNumber={(text: string) =>
+            {
+              if (!form?.countryCode) {
+                showToast("error", "Please first select country code!");
+                return;
+              }
+              setForm({ ...form, phone: text });
+            }
+          }
+          selectedCountry={form?.countryCode as any}
+          onChangeSelectedCountry={(text: any) =>
+            setForm({ ...form, countryCode: text })
+          }
         />
         <TextInput
           style={styles.input}
@@ -165,7 +184,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: "50%",
+    width: "90%",
     margin: 12,
     borderWidth: 1,
     padding: 10,

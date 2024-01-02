@@ -42,28 +42,33 @@ export default function SignIn() {
       data: formdata,
     };
 
-    const req = await axios.request(config);
-    console.log(req.data);
-    if (req.data.error) {
-      showToast("error", req.data.error);
-      setBtnLoading(false);
-      return;
-    }
-    showToast("success", "Sign in successful!");
-    await storeData("user", req.data);
-    signIn(req.data as User);
+    try {
+      const req = await axios.request(config);
+      console.log(req.data);
+      if (req.data.error) {
+        showToast("error", req.data.error);
+        setBtnLoading(false);
+        return;
+      }
+      showToast("success", "Sign in successful!");
+      await storeData("user", req.data);
+      signIn(req.data as User);
 
-    setTimeout(() => {
-      router.push("/");
-      setForm({ email: "", password: "" });
+      setTimeout(() => {
+        router.push("/");
+        setForm({ email: "", password: "" });
+        setBtnLoading(false);
+      }, 1000);
+    } catch (e) {
+      showToast("error", "An error occured!");
       setBtnLoading(false);
-    }, 1000);
+    }
   };
 
   return (
     <>
-      <Toast />
       <Header title="SIGN IN" />
+      <Toast />
       <View style={styles.container}>
         <FontAwesome name="user" size={64} color="black" />
         <TextInput
@@ -102,7 +107,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: "50%",
+    width: "80%",
     margin: 12,
     borderWidth: 1,
     padding: 10,
