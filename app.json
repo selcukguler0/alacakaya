@@ -19,6 +19,9 @@
       "supportsTablet": true,
       "runtimeVersion": {
         "policy": "appVersion"
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyD5sD4_03oVBEZzO5xW6ujzZyrhk_keRRo"
       }
     },
     "android": {
