@@ -1,12 +1,10 @@
+import 'expo-dev-client';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-
 import { useFonts } from "expo-font";
 import { Link, SplashScreen, Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { Drawer } from "expo-router/drawer";
 import Colors from "../constants/Colors";
-import Header from "../components/Header";
-import { DrawerHeaderProps } from "@react-navigation/drawer";
 import BackgroundImage from "../components/BackgroundImage";
 import NetInfo from "@react-native-community/netinfo";
 import {

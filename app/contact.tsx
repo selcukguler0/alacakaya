@@ -141,7 +141,7 @@ export default function Contact() {
             Organize Sanayi Bölgesi, Yazıkonak Pk. 23280 {"\n"}
             Elazığ / Türkiye
           </Text>
-          <MapView provider={PROVIDER_GOOGLE} initialRegion={
+          <MapView showsUserLocation={false} provider={PROVIDER_GOOGLE} initialRegion={
             {
               latitude: 38.619736,
               longitude: 39.29813,
