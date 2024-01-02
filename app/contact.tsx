@@ -135,7 +135,7 @@ export default function Contact() {
           </TouchableOpacity>
         </View>
         {/* MAP */}
-        {/* <View style={styles.container}>
+        <View style={styles.container}>
           <FontAwesome name="map" size={64} color="black" />
           <Text style={styles.addressText}>
             Organize Sanayi Bölgesi, Yazıkonak Pk. 23280 {"\n"}
@@ -154,7 +154,7 @@ export default function Contact() {
               <Text style={styles.mapMarkerText}>Alacakaya Marble and Mineral Works</Text>
             </Marker>
           </MapView>
-        </View> */}
+        </View>
       </ScrollView>
     </>
   );
