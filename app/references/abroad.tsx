@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
   },
   item: {
     flex: 1,
+    padding: 5,
     alignItems: "center",
-    marginBottom: 20, // Add margin between items vertically
   },
   itemText: {
     fontSize: 16,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   itemImage: {
-    width: 150,
+    width: "100%",
     height: 150,
     objectFit: "contain",
   },

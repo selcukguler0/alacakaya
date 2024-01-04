@@ -133,8 +133,7 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     alignItems: "center",
-    padding: 10,
-    marginBottom: 20, // Add margin between items vertically
+    padding: 5,
   },
   itemText: {
     fontSize: 16,
@@ -143,9 +142,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   itemImage: {
-    width: 150,
+    width: "100%",
     height: 150,
-    objectFit: "contain",
+    objectFit: "cover",
   },
   backBtn: {
     backgroundColor: "#0005",
