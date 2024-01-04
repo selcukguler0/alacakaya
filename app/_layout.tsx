@@ -1,26 +1,26 @@
-import 'expo-dev-client';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { useFonts } from "expo-font";
-import { Link, SplashScreen, Stack } from "expo-router";
-import { useEffect, useState } from "react";
-import { Drawer } from "expo-router/drawer";
-import Colors from "../constants/Colors";
-import BackgroundImage from "../components/BackgroundImage";
 import NetInfo from "@react-native-community/netinfo";
+import "expo-dev-client";
+import { useFonts } from "expo-font";
+import { SplashScreen } from "expo-router";
+import { Drawer } from "expo-router/drawer";
+import { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
-  Text,
-  View,
   StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from "react-native";
-import { AuthProvider, useAuth } from "../context/AuthContext";
+import BackgroundImage from "../components/BackgroundImage";
+import Colors from "../constants/Colors";
 import Screens from "../constants/Screens";
+import { AuthProvider, useAuth } from "../context/AuthContext";
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
+  ErrorBoundary
 } from "expo-router";
 
 export const unstable_settings = {
@@ -127,22 +127,21 @@ function RootLayoutNav() {
         return (
           <SafeAreaView style={styles.container}>
             <ScrollView style={styles.wrapper}>
-              {Screens.map(
-                (screen) =>
-                  screen.show && (
-                    <TouchableOpacity
-                      key={screen.title}
-                      onPress={() => props.navigation.navigate(screen.path)}
-                      style={styles.item}
-                    >
-                      <FontAwesome
-                        name={screen.icon as any}
-                        size={20}
-                        color="white"
-                      />
-                      <Text style={styles.itemText}>{screen.title}</Text>
-                    </TouchableOpacity>
-                  )
+              {Screens.map((screen) =>
+                screen.title == "SHOP" && !user ? (null) : (
+                  <TouchableOpacity
+                    key={screen.title}
+                    onPress={() => props.navigation.navigate(screen.path)}
+                    style={styles.item}
+                  >
+                    <FontAwesome
+                      name={screen.icon as any}
+                      size={20}
+                      color="white"
+                    />
+                    <Text style={styles.itemText}>{screen.title}</Text>
+                  </TouchableOpacity>
+                )
               )}
               {user ? (
                 <View

@@ -14,10 +14,12 @@ import Colors from "../constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useNavigation } from "expo-router/src/useNavigation";
+import { useAuth } from "../context/AuthContext";
 
 const logo = require("../assets/images/logoWhite.png");
 
 const Header = ({ title }: { title: string }) => {
+  const { user } = useAuth();
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
 
@@ -39,9 +41,11 @@ const Header = ({ title }: { title: string }) => {
         )}
         <Text style={styles.title}>{title}</Text>
       </View>
-      <Pressable onPress={() => router.push("/shop/bucket")}>
-        <FontAwesome name="shopping-cart" size={24} color="white" />
-      </Pressable>
+      {user && (
+        <Pressable style={{marginRight: 5}} onPress={() => router.push("/shop/bucket")}>
+          <FontAwesome name="shopping-cart" size={24} color="white" />
+        </Pressable>
+      )}
     </View>
   );
 };

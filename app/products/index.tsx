@@ -1,19 +1,15 @@
 import { router } from "expo-router";
+import { useEffect, useState } from "react";
 import {
-  Text,
+  ImageBackground,
   ScrollView,
   StyleSheet,
+  Text,
   TouchableOpacity,
-  ImageBackground,
 } from "react-native";
 import Header from "../../components/Header";
-import { useEffect, useState } from "react";
+import type { Product } from "../../types/types";
 import { getData, storeData } from "../../utils/data-storage";
-interface Product {
-  id: string;
-  name: string;
-  image_paths: string[];
-}
 
 export default function Products() {
   const [products, setProducts] = useState<[] | Product[]>([]);

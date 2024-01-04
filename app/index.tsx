@@ -10,6 +10,7 @@ import {
 
 import { router } from "expo-router";
 import Header from "../components/Header";
+import { useAuth } from "../context/AuthContext";
 
 const productsIcon = require("../assets/icons/products.png");
 const shopIcon = require("../assets/icons/shop.png");
@@ -59,6 +60,7 @@ const menu: MenuItems[] = [
 ];
 
 export default function Home() {
+  const { user } = useAuth();
   const navigationHandler = (href: string) => {
     router.push(href as `http${string}`);
   };
@@ -87,17 +89,19 @@ export default function Home() {
           <FlatList
             data={menu}
             numColumns={2}
-            renderItem={({ item }) => (
-              <Pressable
-                style={styles.item}
-                onPress={() => navigationHandler(item.href as string)}
-              >
-                <>
-                  <Image style={styles.itemIcon} source={item.icon} />
-                  <Text style={styles.itemText}>{item.title}</Text>
-                </>
-              </Pressable>
-            )}
+            renderItem={({ item }) =>
+              item.title === "SHOP" && !user ? null : (
+                <Pressable
+                  style={styles.item}
+                  onPress={() => navigationHandler(item.href as string)}
+                >
+                  <>
+                    <Image style={styles.itemIcon} source={item.icon} />
+                    <Text style={styles.itemText}>{item.title}</Text>
+                  </>
+                </Pressable>
+              )
+            }
             style={{ width: "100%", marginHorizontal: 20 }}
             keyExtractor={(item) => item.title}
           />

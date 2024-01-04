@@ -53,6 +53,10 @@ export async function removeItem(id: string) {
   storeData("bucket", data);
 }
 
+export async function clearBucket() {
+  removeData("bucket");
+}
+
 export async function getItems() {
   const data = (await getData("bucket")) as BucketItem[];
   return data;

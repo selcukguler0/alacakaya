@@ -1,29 +1,21 @@
-import {
-  View,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  Text,
-  ActivityIndicator,
-  ScrollView,
-} from "react-native";
-import { useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import PhoneInput, { ICountry } from "react-native-international-phone-number";
-import { Toast, showToast, toastConfig } from "../utils/toast";
 import axios from "axios";
 import FormData from "form-data";
+import { useState } from "react";
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import PhoneInput, { ICountry } from "react-native-international-phone-number";
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-
 import Header from "../components/Header";
-
-interface FormType {
-  email: string;
-  name: string;
-  message: string;
-  phone: string;
-  countryCode: ICountry;
-}
+import type { FormType } from "../types/types";
+import { Toast, showToast, toastConfig } from "../utils/toast";
 
 export default function Contact() {
   const [btnLoading, setBtnLoading] = useState(false);

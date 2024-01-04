@@ -1,28 +1,60 @@
-import NumericInput from "react-native-numeric-input";
+import { FontAwesome } from "@expo/vector-icons";
+import { Picker } from "@react-native-picker/picker";
 import { useIsFocused } from "@react-navigation/native";
+import axios from "axios";
+import { Image } from "expo-image";
+import { useEffect, useState } from "react";
 import {
-  Text,
+  ActivityIndicator,
   ScrollView,
   StyleSheet,
+  Text,
   TouchableOpacity,
-  ImageBackground,
   View,
-  ActivityIndicator,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
 import Header from "../../components/Header";
-import { useEffect, useState } from "react";
-import { BucketItem, Product } from "../../types/types";
-import { Image } from "expo-image";
-import { addItem, getItems, removeItem } from "../../utils/bucket-management";
 import { useAuth } from "../../context/AuthContext";
+import { BucketItem } from "../../types/types";
+import {
+  clearBucket,
+  getItems,
+  removeItem,
+} from "../../utils/bucket-management";
 import { Toast, showToast } from "../../utils/toast";
+
+const reservationLengths = [
+  { label: "3 hours", value: "10800000" },
+  { label: "4 hours", value: "14400000" },
+  { label: "5 hours", value: "18000000" },
+  { label: "6 hours", value: "21600000" },
+  { label: "7 hours", value: "25200000" },
+  { label: "8 hours", value: "28800000" },
+  { label: "9 hours", value: "32400000" },
+  { label: "10 hours", value: "36000000" },
+  { label: "11 hours", value: "39600000" },
+  { label: "12 hours", value: "43200000" },
+  { label: "13 hours", value: "46800000" },
+  { label: "14 hours", value: "50400000" },
+  { label: "15 hours", value: "54000000" },
+  { label: "16 hours", value: "57600000" },
+  { label: "17 hours", value: "61200000" },
+  { label: "18 hours", value: "64800000" },
+  { label: "19 hours", value: "68400000" },
+  { label: "20 hours", value: "72000000" },
+  { label: "21 hours", value: "75600000" },
+  { label: "22 hours", value: "79200000" },
+  { label: "23 hours", value: "82800000" },
+  { label: "1 day", value: "86400000" },
+  { label: "2 days", value: "172800000" },
+  { label: "3 days", value: "259200000" },
+];
 
 export default function Bucket() {
   const isFocused = useIsFocused();
   const { user } = useAuth();
 
   const [bucket, setBucket] = useState<BucketItem[] | "loading">("loading");
+  const [reservationLength, setReservationLength] = useState(10800000);
 
   useEffect(() => {
     const updateBucket = async () => {
@@ -38,18 +70,6 @@ export default function Bucket() {
     };
   }, [isFocused]);
 
-  const bucketHandler = (id: string, value: number) => {
-    if (!bucket || bucket === "loading") {
-      return;
-    }
-    setBucket("loading");
-    const item = bucket.find((item) => item.id === id);
-    if (item) {
-      item.count = value;
-    }
-    addItem(id, value);
-    setBucket([...bucket]);
-  };
   const removeItemHandler = (id: string) => {
     if (!bucket || bucket === "loading") {
       return;
@@ -62,12 +82,37 @@ export default function Bucket() {
     removeItem(id);
     setBucket([...bucket]);
   };
-  const reserveProductsHandler = () => {
+  const reserveProductsHandler = async () => {
     if (!user) {
       showToast("error", "You must be logged in to reserve products!");
       return;
     }
-    
+    if (!bucket || bucket === "loading") {
+      showToast("error", "An error occured!");
+      return;
+    }
+    const productIds = bucket.map((item) => item.id);
+    console.log("productIds", productIds);
+
+    const res = await axios.post(
+      "https://mobil.alacakaya.com/reserve-product",
+      {
+        userId: user.id,
+        productIds: productIds,
+        reservation_length: reservationLength,
+      }
+    );
+    if (!res.data.ok) {
+      console.log("error", res.data);
+
+      showToast("error", res.data.message);
+      return;
+    }
+    showToast("success", "Products reserved successfully!");
+
+    await clearBucket();
+    setBucket([]);
+    showToast("success", "Products reserved successfully!");
   };
 
   return (
@@ -97,17 +142,6 @@ export default function Bucket() {
               <View style={styles.textWrapper}>
                 <Text style={styles.title}>{product.name}</Text>
                 <View style={styles.inputContainer}>
-                  <NumericInput
-                    minValue={1}
-                    initValue={product.count}
-                    value={product.count}
-                    leftButtonBackgroundColor={"transparent"}
-                    rightButtonBackgroundColor={"transparent"}
-                    iconSize={10}
-                    totalWidth={100}
-                    containerStyle={{ borderWidth: 2, marginTop: 10 }}
-                    onChange={(value) => bucketHandler(product.id, value)}
-                  />
                   <TouchableOpacity
                     onPress={() => {
                       removeItemHandler(product.id);
@@ -119,6 +153,32 @@ export default function Bucket() {
               </View>
             </View>
           ))}
+          <View
+            style={{
+              marginTop: 16,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "500" }}>
+              Reservation Length:{" "}
+            </Text>
+            <Picker
+              style={{ height: 50, width: 150 }}
+              selectedValue={reservationLength}
+              onValueChange={(itemValue, itemIndex) =>
+                setReservationLength(itemValue)
+              }
+            >
+              {reservationLengths.map((item) => (
+                <Picker.Item
+                  key={item.value}
+                  label={item.label}
+                  value={item.value}
+                />
+              ))}
+            </Picker>
+          </View>
           <TouchableOpacity
             style={{
               backgroundColor: "#000",
@@ -174,7 +234,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     marginTop: 10,
   },
   textWrapper: {

@@ -13,27 +13,23 @@ import GalleryContainer from "../../../components/Gallery";
 
 import Header from "../../../components/Header";
 import axios from "axios";
-
-interface Product {
-  id: string;
-  name: string;
-  image_paths: string[];
-}
+import type { Product } from "../../../types/types";
+import Markdown from "react-native-markdown-display";
 
 export default function Product() {
   const galleryRef = useRef(null);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
 
   const local = useLocalSearchParams();
-  const [product, setProduct] = useState<Product | undefined>(
-    undefined
-  );
+  const [product, setProduct] = useState<Product | undefined>(undefined);
 
   useEffect(() => {
     if (local.id) {
-      axios.get("https://mobil.alacakaya.com/get-product/" + local.id).then((res) => {
-        setProduct(res.data);
-      });
+      axios
+        .get("https://mobil.alacakaya.com/get-product/" + local.id)
+        .then((res) => {
+          setProduct(res.data);
+        });
     }
     return () => {
       setProduct(undefined);
@@ -44,9 +40,10 @@ export default function Product() {
     return null;
   }
 
-  const images = product.image_paths.map((image) => (
-    `https://mobil.alacakaya.com/mobil/images/products/${product.id}/${image}`
-  ));
+  const images = product.image_paths.map(
+    (image) =>
+      `https://mobil.alacakaya.com/mobil/images/products/${product.id}/${image}`
+  );
   return (
     <>
       <Header title={product.name} />
@@ -70,7 +67,9 @@ export default function Product() {
                   key={index}
                 >
                   <Image
-                    source={{ uri: `https://mobil.alacakaya.com/mobil/images/products/${product.id}/${image}` }}
+                    source={{
+                      uri: `https://mobil.alacakaya.com/mobil/images/products/${product.id}/${image}`,
+                    }}
                     style={{
                       width: Dimensions.get("window").width / 2 - 15,
                       height: 200,
@@ -80,6 +79,12 @@ export default function Product() {
                   />
                 </TouchableWithoutFeedback>
               ))}
+
+              {product.content && (
+                <View style={{ marginVertical: 30 }}>
+                  <Markdown>{product.content}</Markdown>
+                </View>
+              )}
             </View>
           </View>
         </ScrollView>

@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Colors from "../constants/Colors";
-
-interface CountdownProps {
-  timeInMilliseconds: number;
-}
+import type { CountdownProps } from "@/types/types";
 
 const Countdown: React.FC<CountdownProps> = ({ timeInMilliseconds }) => {
   const [time, setTime] = useState(timeInMilliseconds);
