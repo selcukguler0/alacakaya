@@ -34,4 +34,14 @@ export default [
     path: "contact",
     icon: "phone",
   },
+  {
+    title: "MAPS",
+    path: "maps",
+    icon: "map",
+  },
+  {
+    title: "PERSONAL",
+    path: "personal",
+    icon: "user",
+  },
 ];

@@ -1,18 +1,15 @@
+import React from "react";
 import {
+  Dimensions,
   Image,
-  Text,
-  View,
-  ScrollView,
   StyleSheet,
-  TouchableWithoutFeedback,
+  Text,
   TouchableOpacity,
+  View
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigation, useLocalSearchParams } from "expo-router";
-import Carousel from "react-native-reanimated-carousel";
-import { Dimensions } from "react-native";
 import Gallery from "react-native-awesome-gallery";
 import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type GalleryContainerProps = {
   images: any[];
@@ -27,8 +24,9 @@ export default function GalleryContainer({
   setGalleryIndex,
   galleryRef,
 }: GalleryContainerProps) {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.galleryContainer}>
+    <View style={[styles.galleryContainer, { paddingTop: insets.top + 5}]}>
       <Animated.View
         entering={FadeInUp.duration(250)}
         exiting={FadeOutUp.duration(250)}
@@ -39,7 +37,10 @@ export default function GalleryContainer({
             {galleryIndex + 1} of {images.length}
           </Text>
         </View>
-        <TouchableOpacity style={styles.closeBtn} onPress={() => setGalleryIndex(null)}>
+        <TouchableOpacity
+          style={styles.closeBtn}
+          onPress={() => setGalleryIndex(null)}
+        >
           <Text style={{ color: "#fff" }}>Close</Text>
         </TouchableOpacity>
       </Animated.View>
@@ -64,7 +65,7 @@ export default function GalleryContainer({
               }}
             >
               <Image
-                source={{uri: images[index]}}
+                source={{ uri: images[index] }}
                 style={{
                   width: 300,
                   height: 300,

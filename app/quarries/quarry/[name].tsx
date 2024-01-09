@@ -1,19 +1,19 @@
+import { Link, useLocalSearchParams, useNavigation } from "expo-router";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Image,
-  Text,
-  View,
   ScrollView,
   StyleSheet,
+  Text,
   TouchableWithoutFeedback,
+  View,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigation, useLocalSearchParams } from "expo-router";
 // import Carousel from "react-native-snap-carousel";
 import { Dimensions } from "react-native";
 import GalleryContainer from "../../../components/Gallery";
 
 import Header from "../../../components/Header";
-
+import Colors from "@/constants/Colors";
 
 const quarries = [
   {
@@ -116,7 +116,6 @@ export default function Quarry() {
   const galleryRef = useRef(null);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
 
-  const navigation = useNavigation();
   const local = useLocalSearchParams();
   const [quarry, setQuarry] = useState<(typeof quarries)[0] | undefined>(
     undefined
@@ -206,20 +205,24 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold",
+    color: Colors.grayColor
   },
   subtitle: {
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,
+    color: Colors.grayColor
   },
   bold: {
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 10,
+    color: Colors.grayColor
   },
   paragraph: {
     fontSize: 16,
     marginBottom: 10,
+    color: Colors.grayColor
   },
   backBtn: {
     width: "100%",

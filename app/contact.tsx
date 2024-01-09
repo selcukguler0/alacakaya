@@ -12,10 +12,11 @@ import {
   View,
 } from "react-native";
 import PhoneInput, { ICountry } from "react-native-international-phone-number";
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import Header from "../components/Header";
 import type { FormType } from "../types/types";
 import { Toast, showToast, toastConfig } from "../utils/toast";
+import Colors from "@/constants/Colors";
 
 export default function Contact() {
   const [btnLoading, setBtnLoading] = useState(false);
@@ -70,10 +71,10 @@ export default function Contact() {
     <>
       <Header title="CONTACT" />
       <Toast config={toastConfig} />
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.container}>
         {/* CONTACT FORM */}
-        <View style={styles.container}>
-          <FontAwesome name="phone" size={64} color="black" />
+        <View style={styles.wrapper}>
+          <FontAwesome name="phone" size={64} color={Colors.primaryColor} />
           <TextInput
             style={styles.input}
             placeholder="Name"
@@ -126,27 +127,6 @@ export default function Contact() {
             )}
           </TouchableOpacity>
         </View>
-        {/* MAP */}
-        <View style={styles.container}>
-          <FontAwesome name="map" size={64} color="black" />
-          <Text style={styles.addressText}>
-            Organize Sanayi Bölgesi, Yazıkonak Pk. 23280 {"\n"}
-            Elazığ / Türkiye
-          </Text>
-          <MapView showsUserLocation={false} provider={PROVIDER_GOOGLE} initialRegion={
-            {
-              latitude: 38.619736,
-              longitude: 39.29813,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }
-          } style={{width: "100%", height: 300, marginTop: 10}} >
-            <Marker style={styles.mapMarker} coordinate={{latitude: 38.619736, longitude: 39.29813}}>
-              <FontAwesome name="map-marker" size={24} color="red" />
-              <Text style={styles.mapMarkerText}>Alacakaya Marble and Mineral Works</Text>
-            </Marker>
-          </MapView>
-        </View>
       </ScrollView>
     </>
   );
@@ -154,7 +134,12 @@ export default function Contact() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  wrapper: {
+    flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     marginVertical: 30,
   },
   input: {
@@ -190,11 +175,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 10,
   },
-  mapMarker:{
+  mapMarker: {
     alignItems: "center",
     justifyContent: "center",
   },
-  mapMarkerText:{
+  mapMarkerText: {
     fontSize: 15,
     fontWeight: "500",
     textAlign: "center",
@@ -202,5 +187,5 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 10,
     backgroundColor: "#fff",
-  }
+  },
 });

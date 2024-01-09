@@ -3,6 +3,11 @@ import { ICountry } from "react-native-international-phone-number";
 
 export interface User {
   id: string;
+  name_surname: string;
+  city: string;
+  companyName: string;
+  country: string;
+  phone: string;
   email: string;
 }
 export interface AuthContextType {
@@ -23,6 +28,7 @@ export interface Product {
   id: string;
   name: string;
   image_paths: string[];
+  cover_image: string;
   is_reserved: boolean;
   remainingTime: number;
   content: string;

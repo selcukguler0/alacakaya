@@ -6,7 +6,7 @@ const backgroundImage = require("../assets/images/background.jpg");
 const BackgroundImage = () => {
   return (
     <View style={styles.container}>
-      <Image source={backgroundImage} style={styles.backgroundImage} />
+      {/* <Image source={backgroundImage} style={styles.backgroundImage} /> */}
     </View>
   );
 };
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
     position: "absolute",
+    backgroundColor: "#101116",
     flex: 1,
     zIndex: -1, // Place the background image behind other components
     opacity: 1

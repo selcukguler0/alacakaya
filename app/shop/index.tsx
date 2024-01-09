@@ -1,5 +1,5 @@
 import axios from "axios";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   ImageBackground,
@@ -14,6 +14,7 @@ import type { Product } from "@/types/types";
 
 export default function Shop() {
   const [products, setProducts] = useState<[] | Product[]>([]);
+
   useEffect(() => {
     axios.get("https://mobil.alacakaya.com/get-all-products").then((res) => {
       setProducts(res.data);
@@ -39,7 +40,7 @@ export default function Shop() {
           <TouchableOpacity
             onPress={() =>
               router.replace({
-                pathname: "/shop/product/[name]" as `http${string}`,
+                pathname: "/shop/category/[id]" as `http${string}`,
                 params: { id: product.id || "karaman-cream" },
               })
             }
@@ -47,7 +48,7 @@ export default function Shop() {
             style={styles.item}
           >
             <ImageBackground
-              source={{uri: `https://mobil.alacakaya.com/mobil/images/products/${product.id}/${product.image_paths[0]}`}}
+              source={{uri: `https://mobil.alacakaya.com/mobil/images/cover_images/${product.cover_image}`}}
               style={styles.item}
               resizeMode="cover"
             >

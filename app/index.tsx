@@ -11,13 +11,17 @@ import {
 import { router } from "expo-router";
 import Header from "../components/Header";
 import { useAuth } from "../context/AuthContext";
+import Colors from "@/constants/Colors";
 
-const productsIcon = require("../assets/icons/products.png");
+const productsIcon = require("../assets/icons/product.png");
 const shopIcon = require("../assets/icons/shop.png");
 const corporateIcon = require("../assets/icons/corporate.png");
-const referancesIcon = require("../assets/icons/referances.png");
+const referancesIcon = require("../assets/icons/references.png");
+const factoryIcon = require("../assets/icons/factory.png");
 const quarriesIcon = require("../assets/icons/quarries.png");
-const contactIcon = require("../assets/icons/phone-call.png");
+const accountIcon = require("../assets/icons/account.png");
+const mapsIcon = require("../assets/icons/maps.png");
+const contactIcon = require("../assets/icons/contact.png");
 
 // const factoryIcon = require("../assets/icons/factory.png");
 
@@ -42,15 +46,25 @@ const menu: MenuItems[] = [
     icon: referancesIcon,
     href: "/references",
   },
-  // {
-  //   title: "FACTORY",
-  //   icon: factoryIcon,
-  //   href: "/products",
-  // },
+  {
+    title: "FACTORY",
+    icon: factoryIcon,
+    href: "/",
+  },
   {
     title: "QUARRIES",
     icon: quarriesIcon,
     href: "/quarries",
+  },
+  {
+    title: "PERSONAL",
+    icon: accountIcon,
+    href: "/personal",
+  },
+  {
+    title: "MAPS",
+    icon: mapsIcon,
+    href: "/maps",
   },
   {
     title: "CONTACT",
@@ -64,33 +78,41 @@ export default function Home() {
   const navigationHandler = (href: string) => {
     router.push(href as `http${string}`);
   };
+
   return (
     <>
       <Header title="HOME" />
       <View style={styles.container}>
-        <View style={styles.logoContainer}>
-          <View style={styles.line}></View>
-          <Image
-            style={styles.logo}
-            source={require("../assets/images/logoWhite.png")}
-          />
-          <View style={styles.line}></View>
+        <View style={styles.welcomeContainer}>
+          <Text style={{ color: Colors.primaryColor }}>
+            Hi, {user ? user.name_surname : "Guest"}
+          </Text>
+          <Text
+            style={{
+              color: Colors.primaryColor,
+              fontSize: 18,
+              fontWeight: "500",
+            }}
+          >
+            WELCOME
+          </Text>
         </View>
 
         <View
           style={{
             flex: 1,
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "space-between",
             width: "100%",
             marginHorizontal: 20,
           }}
         >
           <FlatList
             data={menu}
-            numColumns={2}
+            numColumns={3}
             renderItem={({ item }) =>
-              item.title === "SHOP" && !user ? null : (
+              !user && (item.title == "SHOP" ||
+              item.title == "PERSONAL") ? null : (
                 <Pressable
                   style={styles.item}
                   onPress={() => navigationHandler(item.href as string)}
@@ -102,9 +124,21 @@ export default function Home() {
                 </Pressable>
               )
             }
-            style={{ width: "100%", marginHorizontal: 20 }}
+            style={{ width: "100%", marginHorizontal: 30 }}
             keyExtractor={(item) => item.title}
           />
+          <View style={styles.footer}>
+            <Text
+              style={{ fontWeight: "bold", fontSize: 26, color: "#292a2e" }}
+            >
+              ALACAKAYA
+            </Text>
+            <Text
+              style={{ fontWeight: "bold", fontSize: 20, color: "#292a2e" }}
+            >
+              © {new Date().getFullYear()}
+            </Text>
+          </View>
         </View>
       </View>
     </>
@@ -116,29 +150,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  logoContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+  welcomeContainer: {
     width: "100%",
-    marginBottom: 60,
-  },
-  logo: {
-    width: 200,
-    height: 100,
-    objectFit: "contain",
-    marginHorizontal: 10,
-  },
-  line: {
-    width: "100%",
-    height: 3,
-    backgroundColor: "#fff",
-    marginVertical: 10,
-    marginTop: 20,
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 30,
   },
   itemContainer: {
     flex: 1,
@@ -150,30 +168,29 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    margin: 5,
-    borderRadius: 10,
-    borderColor: "#000",
-    borderWidth: 1,
+    backgroundColor: Colors.darkPrimaryColor,
     padding: 10,
-    // backgroundColor: "#fff7",
-    marginHorizontal: 20,
-    marginBottom: 20, // Add margin between items vertically
-    underlayColor: "#fff",
-    activeOpacity: 0.5,
+    paddingVertical: 20,
+    margin: 5,
   },
   itemText: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#000",
+    color: Colors.primaryColor,
   },
   itemIcon: {
-    width: 100,
-    height: 100,
+    width: 65,
+    height: 65,
     objectFit: "contain",
+    marginBottom: 10,
+  },
+  footer: {
+    width: "100%",
+    alignItems: "center",
+    padding: 10,
+    marginBottom: 20,
   },
 });
-
-//get antdesign icons type and create a type for menu items
 
 type MenuItems = {
   title: string;

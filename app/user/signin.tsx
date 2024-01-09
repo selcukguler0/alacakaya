@@ -1,21 +1,22 @@
+import Colors from "@/constants/Colors";
+import type { User } from "@/types/types";
+import { FontAwesome } from "@expo/vector-icons";
+import axios from "axios";
+import { router } from "expo-router";
+import FormData from "form-data";
+import { useState } from "react";
 import {
-  View,
+  ActivityIndicator,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
-  Text,
-  ActivityIndicator,
+  View,
 } from "react-native";
-import { useEffect, useState } from "react";
-import { FontAwesome } from "@expo/vector-icons";
-import { router } from "expo-router";
-import { Toast, showToast } from "../../utils/toast";
-import axios from "axios";
-import FormData from "form-data";
-import { storeData } from "../../utils/data-storage";
-import { User, useAuth } from "../../context/AuthContext";
-
 import Header from "../../components/Header";
+import { useAuth } from "../../context/AuthContext";
+import { storeData } from "../../utils/data-storage";
+import { Toast, showToast } from "../../utils/toast";
 
 export default function SignIn() {
   const [btnLoading, setBtnLoading] = useState(false);
@@ -70,7 +71,7 @@ export default function SignIn() {
       <Header title="SIGN IN" />
       <Toast />
       <View style={styles.container}>
-        <FontAwesome name="user" size={64} color="black" />
+        <FontAwesome name="user" size={64} color={Colors.primaryColor} />
         <TextInput
           style={styles.input}
           placeholder="Email"

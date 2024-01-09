@@ -16,7 +16,7 @@ import { router } from "expo-router";
 import { useNavigation } from "expo-router/src/useNavigation";
 import { useAuth } from "../context/AuthContext";
 
-const logo = require("../assets/images/logoWhite.png");
+const logo = require("../assets/images/logo.png");
 
 const Header = ({ title }: { title: string }) => {
   const { user } = useAuth();
@@ -25,25 +25,28 @@ const Header = ({ title }: { title: string }) => {
 
   return (
     <View style={[styles.container, { paddingTop: insets.top + 5 }]}>
-      <View style={styles.wrapper}>
-        <TouchableOpacity
-          onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+      <TouchableOpacity
+        onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+      >
+        <Text
+          style={{ fontSize: 20, marginRight: 10, color: Colors.primaryColor }}
         >
-          <Text style={{ fontSize: 20, marginRight: 10, color: "#fff" }}>
-            ☰
-          </Text>
-        </TouchableOpacity>
-        {title != "HOME" && (
-          <>
-            <Image style={styles.logo} source={logo} />
-            <Text style={styles.divider}>|</Text>
-          </>
-        )}
-        <Text style={styles.title}>{title}</Text>
-      </View>
+          ☰
+        </Text>
+      </TouchableOpacity>
+      <Image style={styles.logo} source={logo} />
+      <Text style={styles.divider}>|</Text>
+      <Text style={styles.title}>{title}</Text>
       {user && (
-        <Pressable style={{marginRight: 5}} onPress={() => router.push("/shop/bucket")}>
-          <FontAwesome name="shopping-cart" size={24} color="white" />
+        <Pressable
+          style={{ marginRight: 5 }}
+          onPress={() => router.push("/shop/bucket")}
+        >
+          <FontAwesome
+            name="shopping-cart"
+            size={24}
+            color={Colors.primaryColor}
+          />
         </Pressable>
       )}
     </View>
@@ -58,17 +61,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: 10,
-    backgroundColor: Colors.primaryColor,
+    paddingHorizontal: 20,
+    borderBottomColor: Colors.primaryColor,
+    borderBottomWidth: 3,
+    backgroundColor: Colors.darkPrimaryColor,
   },
   wrapper: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Colors.darkPrimaryColor,
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "white",
+    color: Colors.primaryColor,
     maxWidth: 200,
   },
   logo: {
@@ -80,6 +86,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingHorizontal: 10,
     backgroundColor: "transparent",
-    color: "white",
+    color: Colors.primaryColor,
   },
 });

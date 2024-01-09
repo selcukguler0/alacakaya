@@ -20,7 +20,7 @@ import { AuthProvider, useAuth } from "../context/AuthContext";
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary
+  ErrorBoundary,
 } from "expo-router";
 
 export const unstable_settings = {
@@ -128,7 +128,7 @@ function RootLayoutNav() {
           <SafeAreaView style={styles.container}>
             <ScrollView style={styles.wrapper}>
               {Screens.map((screen) =>
-                screen.title == "SHOP" && !user ? (null) : (
+                (screen.title == "SHOP" || screen.title == "PERSONAL") && !user ? null : (
                   <TouchableOpacity
                     key={screen.title}
                     onPress={() => props.navigation.navigate(screen.path)}
@@ -137,50 +137,34 @@ function RootLayoutNav() {
                     <FontAwesome
                       name={screen.icon as any}
                       size={20}
-                      color="white"
+                      color={Colors.grayColor}
                     />
                     <Text style={styles.itemText}>{screen.title}</Text>
                   </TouchableOpacity>
                 )
               )}
-              {user ? (
-                <View
-                  style={{
-                    marginHorizontal: 10,
-                    marginVertical: 50,
-                    alignItems: "center",
-                  }}
-                >
-                  <FontAwesome name="user" size={30} color="black" />
-                  <Text
-                    style={{
-                      fontSize: 15,
-                      fontWeight: "500",
-                      color: "#000",
-                      marginVertical: 5,
-                    }}
-                  >
-                    {user.email}
-                  </Text>
-                  <TouchableOpacity onPress={signOut} style={styles.item}>
-                    <FontAwesome name="sign-out" size={20} color="white" />
-                    <Text style={styles.itemText}>Sign Out</Text>
-                  </TouchableOpacity>
-                </View>
-              ) : (
+              {!user && (
                 <View style={styles.userContainer}>
                   <TouchableOpacity
                     onPress={() => props.navigation.navigate("user/signin")}
                     style={styles.userWrapper}
                   >
-                    <FontAwesome name="user" size={30} color="white" />
+                    <FontAwesome
+                      name="user"
+                      size={30}
+                      color={Colors.grayColor}
+                    />
                     <Text style={styles.itemText}>Sign In</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => props.navigation.navigate("user/signup")}
                     style={styles.userWrapper}
                   >
-                    <FontAwesome name="sign-in" size={30} color="white" />
+                    <FontAwesome
+                      name="sign-in"
+                      size={30}
+                      color={Colors.grayColor}
+                    />
                     <Text style={styles.itemText}>Sign Up</Text>
                   </TouchableOpacity>
                 </View>
@@ -196,7 +180,7 @@ function RootLayoutNav() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Colors.darkPrimaryColor,
   },
   wrapper: {
     marginVertical: 40,
@@ -210,10 +194,10 @@ const styles = StyleSheet.create({
     gap: 30,
     elevation: 4,
     // padding: 5,
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Colors.darkPrimaryColor,
   },
   itemText: {
-    color: "white",
+    color: Colors.grayColor,
     fontSize: 20,
     fontWeight: "bold",
   },
@@ -228,7 +212,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    borderColor: "white",
+    borderColor: Colors.grayColor,
     borderWidth: 1,
     padding: 10,
   },

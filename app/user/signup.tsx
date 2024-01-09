@@ -15,6 +15,7 @@ import FormData from "form-data";
 
 import PhoneInput, { ICountry } from "react-native-international-phone-number";
 import Header from "../../components/Header";
+import Colors from "@/constants/Colors";
 
 export default function SignUp() {
   const [form, setForm] = useState({
@@ -102,7 +103,7 @@ export default function SignUp() {
         }}
         style={styles.container}
       >
-        <FontAwesome name="user" size={64} color="black" />
+        <FontAwesome name="user" size={64} color={Colors.primaryColor} />
         <TextInput
           style={styles.input}
           placeholder="Name Surname"
